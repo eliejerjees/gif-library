@@ -47,6 +47,10 @@ final class MessagesViewController: MSMessagesAppViewController {
                     payload: payload,
                     conversation: conversation
                 )
+
+                await MainActor.run {
+                    self.requestPresentationStyle(.compact)
+                }
             }
         )
 
