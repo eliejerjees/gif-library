@@ -25,73 +25,54 @@ struct LibraryExperience {
 struct LibraryRootView: View {
     @StateObject private var viewModel = LibraryViewModel()
     @State private var isImportSheetPresented = false
+    @State private var selectedFolderForDetail: MediaFolder?
 
     let experience: LibraryExperience
 
     var body: some View {
-        NavigationStack {
-            GeometryReader { proxy in
-                ZStack(alignment: .top) {
-                    LibraryBackgroundView()
+        ZStack(alignment: .top) {
+            LibraryBackgroundView()
 
-                    if let startupError = viewModel.startupError {
-                        SetupRequiredView(message: startupError)
-                            .padding(20)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    } else {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 20) {
-                                header
-                                searchBar
-                                tabPicker
-                                tabContent
-                            }
-                            .padding(20)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .scrollIndicators(.hidden)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            if let startupError = viewModel.startupError {
+                SetupRequiredView(message: startupError)
+                    .padding(20)
+                    .padding(.top, 12)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        actionRow
+                        header
+                        searchBar
+                        tabPicker
+                        tabContent
                     }
-
-                    if viewModel.isBusy {
-                        BusyOverlayView()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
+                    .padding(20)
+                    .padding(.top, 12)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                .scrollIndicators(.hidden)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                if viewModel.startupError == nil {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            isImportSheetPresented = true
-                        } label: {
-                            Label("Import", systemImage: "plus")
-                        }
-                    }
 
-                    if viewModel.selectedTab == .folders {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button {
-                                viewModel.beginCreatingFolder()
-                            } label: {
-                                Label("Folder", systemImage: "folder.badge.plus")
-                            }
-                        }
-                    }
-                }
+            if viewModel.isBusy {
+                BusyOverlayView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(LibraryBackgroundView())
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .preferredColorScheme(.dark)
         .task {
             await viewModel.load()
         }
         .sheet(isPresented: $isImportSheetPresented) {
             ImportMediaSheet(viewModel: viewModel, preferredFolderID: nil)
+        }
+        .sheet(item: $selectedFolderForDetail) { folder in
+            NavigationStack {
+                FolderDetailView(viewModel: viewModel, folder: folder, experience: experience)
+            }
+            .preferredColorScheme(.dark)
         }
         .sheet(item: $viewModel.folderEditor) { editor in
             FolderEditorSheet(
@@ -147,6 +128,25 @@ struct LibraryRootView: View {
             Button("Cancel", role: .cancel) {}
         } message: { folder in
             Text("Delete “\(folder.name)” and keep its media as unfiled items?")
+        }
+    }
+
+    private var actionRow: some View {
+        HStack {
+            if viewModel.selectedTab == .folders {
+                CircleActionButton(systemImage: "folder.badge.plus") {
+                    viewModel.beginCreatingFolder()
+                }
+            } else {
+                Color.clear
+                    .frame(width: 56, height: 56)
+            }
+
+            Spacer()
+
+            CircleActionButton(systemImage: "plus") {
+                isImportSheetPresented = true
+            }
         }
     }
 
@@ -218,7 +218,13 @@ struct LibraryRootView: View {
                 case .recent:
                     RecentTabView(viewModel: viewModel, experience: experience)
                 case .folders:
-                    FoldersTabView(viewModel: viewModel, experience: experience)
+                    FoldersTabView(
+                        viewModel: viewModel,
+                        experience: experience,
+                        onOpenFolder: { folder in
+                            selectedFolderForDetail = folder
+                        }
+                    )
                 }
             }
         }
@@ -271,6 +277,7 @@ private struct SearchResultsView: View {
 private struct FoldersTabView: View {
     @ObservedObject var viewModel: LibraryViewModel
     let experience: LibraryExperience
+    let onOpenFolder: (MediaFolder) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -281,8 +288,8 @@ private struct FoldersTabView: View {
                 )
             } else {
                 ForEach(viewModel.folders) { folder in
-                    NavigationLink {
-                        FolderDetailView(viewModel: viewModel, folder: folder, experience: experience)
+                    Button {
+                        onOpenFolder(folder)
                     } label: {
                         FolderRowView(
                             folder: folder,
@@ -302,6 +309,29 @@ private struct FoldersTabView: View {
                 }
             }
         }
+    }
+}
+
+private struct CircleActionButton: View {
+    let systemImage: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: systemImage)
+                .font(.system(size: 22, weight: .medium))
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(
+                    Circle()
+                        .fill(Color.white.opacity(0.06))
+                        .overlay {
+                            Circle()
+                                .stroke(Color.white.opacity(0.14), lineWidth: 1)
+                        }
+                )
+        }
+        .buttonStyle(.plain)
     }
 }
 

@@ -6,40 +6,20 @@ struct MediaGridView: View {
     let experience: LibraryExperience
     let showFolderNames: Bool
 
-    @State private var availableWidth: CGFloat = 0
-
     private let spacing: CGFloat = 14
-
-    private var columns: [GridItem] {
-        [
-            GridItem(.fixed(tileSize), spacing: spacing, alignment: .top),
-            GridItem(.fixed(tileSize), spacing: spacing, alignment: .top)
-        ]
-    }
-
-    private var tileSize: CGFloat {
-        let fallbackWidth = UIScreen.main.bounds.width - 40
-        let width = max(availableWidth, fallbackWidth)
-        return max(floor((width - spacing) / 2), 120)
-    }
+    private let columns = [
+        GridItem(.flexible(minimum: 0, maximum: .infinity), spacing: 14, alignment: .top),
+        GridItem(.flexible(minimum: 0, maximum: .infinity), spacing: 14, alignment: .top)
+    ]
 
     var body: some View {
         LazyVGrid(columns: columns, alignment: .leading, spacing: spacing) {
             ForEach(items) { item in
                 tileButton(for: item)
-                    .frame(width: tileSize, height: tileSize)
+                    .aspectRatio(1, contentMode: .fit)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background {
-            GeometryReader { proxy in
-                Color.clear
-                    .preference(key: MediaGridWidthPreferenceKey.self, value: proxy.size.width)
-            }
-        }
-        .onPreferenceChange(MediaGridWidthPreferenceKey.self) { width in
-            availableWidth = width
-        }
     }
 
     private func tileButton(for item: MediaAsset) -> some View {
@@ -86,14 +66,6 @@ struct MediaGridView: View {
                 }
             }
         }
-    }
-}
-
-private struct MediaGridWidthPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
     }
 }
 
