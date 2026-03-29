@@ -6,50 +6,67 @@ struct MediaGridView: View {
     let experience: LibraryExperience
     let showFolderNames: Bool
 
-    private let columns = [
-        GridItem(.flexible(), spacing: 14, alignment: .top),
-        GridItem(.flexible(), spacing: 14, alignment: .top)
-    ]
+    private var rows: [[MediaAsset]] {
+        stride(from: 0, to: items.count, by: 2).map { startIndex in
+            Array(items[startIndex ..< min(startIndex + 2, items.count)])
+        }
+    }
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 14) {
-            ForEach(items) { item in
-                Button {
-                    viewModel.showComposer(for: item)
-                } label: {
-                    MediaTileView(
-                        item: item,
-                        thumbnailURL: viewModel.thumbnailURL(for: item),
-                        folderName: showFolderNames ? viewModel.folder(for: item.folderID)?.name : nil
-                    )
+        VStack(spacing: 14) {
+            ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
+                HStack(alignment: .top, spacing: 14) {
+                    ForEach(row) { item in
+                        tileButton(for: item)
+                    }
+
+                    if row.count == 1 {
+                        Color.clear
+                            .frame(maxWidth: .infinity)
+                            .aspectRatio(1, contentMode: .fit)
+                    }
                 }
-                .buttonStyle(.plain)
-                .contextMenu {
-                    Button(experience.sendAction == nil ? "Preview" : "Insert", systemImage: "paperplane") {
-                        viewModel.showComposer(for: item)
-                    }
+            }
+        }
+    }
 
-                    Button("Rename", systemImage: "pencil") {
-                        viewModel.beginRenamingItem(item)
-                    }
+    private func tileButton(for item: MediaAsset) -> some View {
+        Button {
+            viewModel.showComposer(for: item)
+        } label: {
+            MediaTileView(
+                item: item,
+                thumbnailURL: viewModel.thumbnailURL(for: item),
+                folderName: showFolderNames ? viewModel.folder(for: item.folderID)?.name : nil
+            )
+        }
+        .buttonStyle(.plain)
+        .frame(maxWidth: .infinity)
+        .aspectRatio(1, contentMode: .fit)
+        .contextMenu {
+            Button(experience.sendAction == nil ? "Preview" : "Insert", systemImage: "paperplane") {
+                viewModel.showComposer(for: item)
+            }
 
-                    Button("Move to Folder", systemImage: "folder") {
-                        viewModel.beginMoving(item)
-                    }
+            Button("Rename", systemImage: "pencil") {
+                viewModel.beginRenamingItem(item)
+            }
 
-                    if item.folderID != nil {
-                        Button("Remove from Folder", systemImage: "folder.badge.minus") {
-                            Task {
-                                await viewModel.move(item, to: nil)
-                            }
-                        }
-                    }
+            Button("Move to Folder", systemImage: "folder") {
+                viewModel.beginMoving(item)
+            }
 
-                    Button("Delete", systemImage: "trash", role: .destructive) {
-                        Task {
-                            await viewModel.delete(item)
-                        }
+            if item.folderID != nil {
+                Button("Remove from Folder", systemImage: "folder.badge.minus") {
+                    Task {
+                        await viewModel.move(item, to: nil)
                     }
+                }
+            }
+
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                Task {
+                    await viewModel.delete(item)
                 }
             }
         }
@@ -97,7 +114,7 @@ struct MediaTileView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
-        .aspectRatio(1, contentMode: .fit)
+        .frame(maxHeight: .infinity)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 20, style: .continuous)

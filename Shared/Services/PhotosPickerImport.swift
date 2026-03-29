@@ -7,6 +7,8 @@ enum PhotosPickerImport {
             throw PhotosPickerImportError.unsupportedSelection
         }
 
+        let suggestedName = provider.suggestedName?.trimmingCharacters(in: .whitespacesAndNewlines)
+
         return try await withCheckedThrowingContinuation { continuation in
             provider.loadFileRepresentation(forTypeIdentifier: contentType.identifier) { url, error in
                 if let error {
@@ -31,7 +33,7 @@ enum PhotosPickerImport {
                     try FileManager.default.copyItem(at: url, to: copiedURL)
                     continuation.resume(returning: ImportedTemporaryMedia(
                         url: copiedURL,
-                        suggestedName: provider.suggestedName?.trimmingCharacters(in: .whitespacesAndNewlines)
+                        suggestedName: suggestedName
                     ))
                 } catch {
                     continuation.resume(throwing: error)

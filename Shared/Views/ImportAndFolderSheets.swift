@@ -190,6 +190,12 @@ struct FolderEditorSheet: View {
             Form {
                 TextField("Folder name", text: $folderName)
                     .focused($isFocused)
+                    .submitLabel(.done)
+                    .onSubmit {
+                        Task {
+                            await onSave(folderName)
+                        }
+                    }
             }
             .scrollContentBackground(.hidden)
             .background(
@@ -216,7 +222,6 @@ struct FolderEditorSheet: View {
                     Button("Save") {
                         Task {
                             await onSave(folderName)
-                            dismiss()
                         }
                     }
                 }
@@ -272,7 +277,7 @@ struct MoveToFolderSheet: View {
                 )
                 .ignoresSafeArea()
             )
-            .navigationTitle("Move “\(item.originalFilename)”")
+            .navigationTitle("Move “\(item.displayName)”")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -307,10 +312,11 @@ struct AddExistingMediaToFolderSheet: View {
         viewModel.availableItems(forAddingTo: folder)
     }
 
-    private let columns = [
-        GridItem(.flexible(), spacing: 14, alignment: .top),
-        GridItem(.flexible(), spacing: 14, alignment: .top)
-    ]
+    private var rows: [[MediaAsset]] {
+        stride(from: 0, to: availableItems.count, by: 2).map { startIndex in
+            Array(availableItems[startIndex ..< min(startIndex + 2, availableItems.count)])
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -332,28 +338,40 @@ struct AddExistingMediaToFolderSheet: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                     } else {
-                        LazyVGrid(columns: columns, spacing: 14) {
-                            ForEach(availableItems) { item in
-                                Button {
-                                    Task {
-                                        await viewModel.move(item, to: folder.id)
-                                        dismiss()
-                                    }
-                                } label: {
-                                    ZStack(alignment: .topTrailing) {
-                                        MediaTileView(
-                                            item: item,
-                                            thumbnailURL: viewModel.thumbnailURL(for: item),
-                                            folderName: viewModel.folder(for: item.folderID)?.name
-                                        )
+                        VStack(spacing: 14) {
+                            ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
+                                HStack(alignment: .top, spacing: 14) {
+                                    ForEach(row) { item in
+                                        Button {
+                                            Task {
+                                                await viewModel.move(item, to: folder.id)
+                                                dismiss()
+                                            }
+                                        } label: {
+                                            ZStack(alignment: .topTrailing) {
+                                                MediaTileView(
+                                                    item: item,
+                                                    thumbnailURL: viewModel.thumbnailURL(for: item),
+                                                    folderName: viewModel.folder(for: item.folderID)?.name
+                                                )
 
-                                        Image(systemName: "plus.circle.fill")
-                                            .font(.system(size: 24, weight: .bold))
-                                            .foregroundStyle(.white, .blue)
-                                            .padding(10)
+                                                Image(systemName: "plus.circle.fill")
+                                                    .font(.system(size: 24, weight: .bold))
+                                                    .foregroundStyle(.white, .blue)
+                                                    .padding(10)
+                                            }
+                                        }
+                                        .buttonStyle(.plain)
+                                        .frame(maxWidth: .infinity)
+                                        .aspectRatio(1, contentMode: .fit)
+                                    }
+
+                                    if row.count == 1 {
+                                        Color.clear
+                                            .frame(maxWidth: .infinity)
+                                            .aspectRatio(1, contentMode: .fit)
                                     }
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                     }
@@ -407,6 +425,13 @@ private struct MediaImportNameSheet: View {
                 Section("Name") {
                     TextField("Media name", text: $mediaName)
                         .focused($isFocused)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            guard !mediaName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+                            Task {
+                                await onSave(mediaName)
+                            }
+                        }
                 }
             }
             .scrollContentBackground(.hidden)

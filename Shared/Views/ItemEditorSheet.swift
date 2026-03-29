@@ -20,6 +20,13 @@ struct ItemEditorSheet: View {
             Form {
                 TextField("Media name", text: $itemName)
                     .focused($isFocused)
+                    .submitLabel(.done)
+                    .onSubmit {
+                        guard !itemName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+                        Task {
+                            await onSave(itemName)
+                        }
+                    }
             }
             .scrollContentBackground(.hidden)
             .background(
@@ -46,7 +53,6 @@ struct ItemEditorSheet: View {
                     Button("Save") {
                         Task {
                             await onSave(itemName)
-                            dismiss()
                         }
                     }
                     .disabled(itemName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
