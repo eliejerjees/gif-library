@@ -152,14 +152,25 @@ final class LibraryViewModel: ObservableObject {
         }
     }
 
-    func registerSend(of item: MediaAsset, caption: String?) async {
+    func registerSend(of item: MediaAsset) async {
         guard let store else { return }
         do {
-            snapshot = try await store.registerUse(of: item.id, caption: caption)
+            snapshot = try await store.registerUse(of: item.id, caption: nil)
             selectedAssetForComposer = snapshot.items.first(where: { $0.id == item.id })
         } catch {
             present(error)
         }
+    }
+
+    func availableItems(forAddingTo folder: MediaFolder) -> [MediaAsset] {
+        snapshot.items
+            .filter { $0.folderID != folder.id }
+            .sorted { lhs, rhs in
+                if lhs.recencyDate == rhs.recencyDate {
+                    return lhs.createdAt > rhs.createdAt
+                }
+                return lhs.recencyDate > rhs.recencyDate
+            }
     }
 
     func importFromFiles(url: URL, preferredFolderID: UUID? = nil) async {

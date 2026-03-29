@@ -7,7 +7,7 @@ struct MediaGridView: View {
     let showFolderNames: Bool
 
     private let columns = [
-        GridItem(.adaptive(minimum: 122, maximum: 180), spacing: 14)
+        GridItem(.adaptive(minimum: 124, maximum: 180), spacing: 14)
     ]
 
     var body: some View {
@@ -24,7 +24,7 @@ struct MediaGridView: View {
                 }
                 .buttonStyle(.plain)
                 .contextMenu {
-                    Button(experience.sendAction == nil ? "Preview" : "Compose", systemImage: "paperplane") {
+                    Button(experience.sendAction == nil ? "Preview" : "Insert", systemImage: "paperplane") {
                         viewModel.showComposer(for: item)
                     }
 
@@ -51,7 +51,7 @@ struct MediaGridView: View {
     }
 }
 
-private struct MediaTileView: View {
+struct MediaTileView: View {
     let item: MediaAsset
     let thumbnailURL: URL?
     let folderName: String?
@@ -60,25 +60,19 @@ private struct MediaTileView: View {
         ZStack(alignment: .bottomLeading) {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.white.opacity(0.06))
-                .aspectRatio(1, contentMode: .fit)
-                .overlay {
-                    if let thumbnailURL {
-                        LocalStaticImageView(url: thumbnailURL)
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    } else {
-                        Color.white.opacity(0.06)
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    }
-                }
-                .overlay(alignment: .topTrailing) {
-                    Text(item.kind.title)
-                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 9)
-                        .padding(.vertical, 5)
-                        .background(Color.black.opacity(0.48), in: Capsule())
-                        .padding(10)
-                }
+
+            if let thumbnailURL {
+                LocalStaticImageView(url: thumbnailURL)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else {
+                Color.white.opacity(0.06)
+            }
+
+            LinearGradient(
+                colors: [Color.black.opacity(0.0), Color.black.opacity(0.68)],
+                startPoint: .center,
+                endPoint: .bottom
+            )
 
             VStack(alignment: .leading, spacing: 4) {
                 if let folderName {
@@ -95,14 +89,21 @@ private struct MediaTileView: View {
             }
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                LinearGradient(
-                    colors: [Color.black.opacity(0.0), Color.black.opacity(0.6)],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        }
+        .aspectRatio(1, contentMode: .fit)
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.white.opacity(0.06), lineWidth: 1)
+        }
+        .overlay(alignment: .topTrailing) {
+            Text(item.kind.title)
+                .font(.system(size: 11, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 9)
+                .padding(.vertical, 5)
+                .background(Color.black.opacity(0.48), in: Capsule())
+                .padding(10)
         }
     }
 }

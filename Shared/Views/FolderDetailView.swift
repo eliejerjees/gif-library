@@ -6,6 +6,7 @@ struct FolderDetailView: View {
     let experience: LibraryExperience
 
     @State private var isImportSheetPresented = false
+    @State private var isAddExistingSheetPresented = false
 
     private var liveFolder: MediaFolder? {
         viewModel.folders.first(where: { $0.id == folder.id })
@@ -43,6 +44,9 @@ struct FolderDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Menu {
+                            Button("Add Existing Media", systemImage: "square.and.arrow.down.on.square") {
+                                isAddExistingSheetPresented = true
+                            }
                             Button("Import Here", systemImage: "plus") {
                                 isImportSheetPresented = true
                             }
@@ -59,6 +63,12 @@ struct FolderDetailView: View {
                 }
                 .sheet(isPresented: $isImportSheetPresented) {
                     ImportMediaSheet(viewModel: viewModel, preferredFolderID: liveFolder.id)
+                }
+                .sheet(isPresented: $isAddExistingSheetPresented) {
+                    AddExistingMediaToFolderSheet(
+                        viewModel: viewModel,
+                        folder: liveFolder
+                    )
                 }
             } else {
                 Text("This folder no longer exists.")
@@ -87,7 +97,7 @@ private struct EmptyFolderView: View {
             Text("This folder is empty")
                 .font(.system(size: 18, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
-            Text("Import directly into the folder or move items here from the Recent tab.")
+            Text("Import directly into the folder or add items that are already in your library.")
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundStyle(Color.white.opacity(0.7))
         }

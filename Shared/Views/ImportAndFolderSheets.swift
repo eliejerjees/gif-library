@@ -224,6 +224,93 @@ struct MoveToFolderSheet: View {
     }
 }
 
+struct AddExistingMediaToFolderSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    @ObservedObject var viewModel: LibraryViewModel
+    let folder: MediaFolder
+
+    private var availableItems: [MediaAsset] {
+        viewModel.availableItems(forAddingTo: folder)
+    }
+
+    private let columns = [
+        GridItem(.adaptive(minimum: 124, maximum: 180), spacing: 14)
+    ]
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Choose anything already in your library to move it into “\(folder.name)”.")
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(Color.white.opacity(0.72))
+
+                    if availableItems.isEmpty {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Nothing else to add")
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                            Text("Everything in the library is already in this folder.")
+                                .foregroundStyle(Color.white.opacity(0.68))
+                        }
+                        .padding(18)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+                    } else {
+                        LazyVGrid(columns: columns, spacing: 14) {
+                            ForEach(availableItems) { item in
+                                Button {
+                                    Task {
+                                        await viewModel.move(item, to: folder.id)
+                                    }
+                                } label: {
+                                    ZStack(alignment: .topTrailing) {
+                                        MediaTileView(
+                                            item: item,
+                                            thumbnailURL: viewModel.thumbnailURL(for: item),
+                                            folderName: viewModel.folder(for: item.folderID)?.name
+                                        )
+
+                                        Image(systemName: "plus.circle.fill")
+                                            .font(.system(size: 24, weight: .bold))
+                                            .foregroundStyle(.white, .blue)
+                                            .padding(10)
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+                }
+                .padding(20)
+            }
+            .scrollIndicators(.hidden)
+            .background(
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.04, green: 0.05, blue: 0.09),
+                        Color(red: 0.08, green: 0.10, blue: 0.17)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+            )
+            .navigationTitle("Add Existing Media")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+    }
+}
+
 private struct PhotoLibraryPickerView: UIViewControllerRepresentable {
     let onPick: (NSItemProvider) -> Void
 

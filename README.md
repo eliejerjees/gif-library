@@ -12,7 +12,7 @@ Personal iPhone-only GIF and media library built with Swift, SwiftUI, a lightwei
 - Video-to-GIF conversion using `AVFoundation` + `ImageIO`
 - Two main tabs in the extension: `Recent` and `Folders`
 - Folder create, rename, move, remove, and delete flows
-- Preview/composer sheet with optional caption history
+- Preview/insert sheet for fast sending inside Messages
 
 ## Project structure
 
@@ -54,7 +54,7 @@ Personal iPhone-only GIF and media library built with Swift, SwiftUI, a lightwei
 
 ## Sending behavior and Messages limitations
 
-- The extension preview sheet lets you add an optional caption and then inserts the caption plus media into the current Messages compose field.
+- The extension preview sheet inserts the media into the current Messages compose field.
 - The user still taps the standard Messages send button afterward.
 - This is the cleanest practical fallback for media attachments in a Messages extension because the extension APIs focus on insertion into the active conversation UI rather than a guaranteed one-tap send for arbitrary local GIF/image attachments.
 

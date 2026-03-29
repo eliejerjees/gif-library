@@ -24,7 +24,7 @@ final class MessagesViewController: MSMessagesAppViewController {
         guard hostingController == nil else { return }
 
         let rootView = LibraryRootView(
-            experience: .messages { [weak self] payload, caption in
+            experience: .messages { [weak self] payload in
                 guard let self else {
                     throw MessageAttachmentSenderError.missingConversation
                 }
@@ -36,7 +36,6 @@ final class MessagesViewController: MSMessagesAppViewController {
 
                 try await self.sender.insert(
                     payload: payload,
-                    caption: caption,
                     conversation: conversation
                 )
             }

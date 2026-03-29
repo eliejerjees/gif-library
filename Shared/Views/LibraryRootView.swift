@@ -4,7 +4,7 @@ struct LibraryExperience {
     let title: String
     let subtitle: String?
     let sendButtonTitle: String
-    let sendAction: (@Sendable (MediaSendPayload, String) async throws -> Void)?
+    let sendAction: (@Sendable (MediaSendPayload) async throws -> Void)?
 
     static func hostApp() -> LibraryExperience {
         LibraryExperience(
@@ -15,7 +15,7 @@ struct LibraryExperience {
         )
     }
 
-    static func messages(sendAction: @escaping @Sendable (MediaSendPayload, String) async throws -> Void) -> LibraryExperience {
+    static func messages(sendAction: @escaping @Sendable (MediaSendPayload) async throws -> Void) -> LibraryExperience {
         LibraryExperience(
             title: "Library",
             subtitle: "Recent stays fast. Folders keep the rest tidy.",
@@ -172,12 +172,15 @@ struct LibraryRootView: View {
 
     @ViewBuilder
     private var tabContent: some View {
-        switch viewModel.selectedTab {
-        case .recent:
-            RecentTabView(viewModel: viewModel, experience: experience)
-        case .folders:
-            FoldersTabView(viewModel: viewModel, experience: experience)
+        Group {
+            switch viewModel.selectedTab {
+            case .recent:
+                RecentTabView(viewModel: viewModel, experience: experience)
+            case .folders:
+                FoldersTabView(viewModel: viewModel, experience: experience)
+            }
         }
+        .padding(.top, 6)
     }
 }
 
