@@ -162,6 +162,12 @@ struct LibraryRootView: View {
                     .foregroundStyle(Color.white.opacity(0.7))
                     .fixedSize(horizontal: false, vertical: true)
             }
+
+            #if DEBUG
+            Text("DEBUG MARKER 01:34")
+                .font(.system(size: 10, weight: .bold, design: .rounded))
+                .foregroundStyle(Color.cyan.opacity(0.9))
+            #endif
         }
         .padding(20)
         .frame(maxWidth: .infinity, alignment: .leading)
