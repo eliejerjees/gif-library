@@ -198,6 +198,20 @@ final class LibraryViewModel: ObservableObject {
         }
     }
 
+    func importFromClipboard(preferredFolderID: UUID? = nil) async {
+        await performBusyWork { [self] in
+            let temporaryURL = try await ClipboardImportService.copySupportedMediaToTemporaryURL()
+            defer { try? FileManager.default.removeItem(at: temporaryURL) }
+
+            guard let store = self.store else { return }
+            self.snapshot = try await store.importExternalFile(
+                at: temporaryURL,
+                sourceType: .clipboard,
+                preferredFolderID: preferredFolderID
+            )
+        }
+    }
+
     func importFromRemoteURLString(_ rawValue: String, preferredFolderID: UUID? = nil) async {
         await performBusyWork { [self] in
             guard let parsedURL = URL(string: rawValue.trimmingCharacters(in: .whitespacesAndNewlines)),

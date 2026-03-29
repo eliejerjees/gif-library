@@ -48,6 +48,7 @@ Personal iPhone-only GIF and media library built with Swift, SwiftUI, a lightwei
 - Fully implemented:
   - Photos import for still images and videos
   - Files import for GIFs, still images, and videos
+  - Clipboard import for copied GIFs, still images, and videos
   - Direct `http` / `https` URL download when the URL points to a supported GIF, image, or video file
 - Structured for later:
   - A full system share extension is not included in this MVP, but the shared storage/import layers are isolated so a share extension can write into the same library later.
@@ -57,6 +58,7 @@ Personal iPhone-only GIF and media library built with Swift, SwiftUI, a lightwei
 - The extension preview sheet inserts the media into the current Messages compose field.
 - The user still taps the standard Messages send button afterward.
 - This is the cleanest practical fallback for media attachments in a Messages extension because the extension APIs focus on insertion into the active conversation UI rather than a guaranteed one-tap send for arbitrary local GIF/image attachments.
+- Messages does not expose a way for an iMessage app to add its own custom item directly into the built-in long-press menu for existing chat media. The implemented fallback is clipboard import: copy media in Messages, then import it straight into the library without saving it to Photos first.
 
 ## Known limitations
 

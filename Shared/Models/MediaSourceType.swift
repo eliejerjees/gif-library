@@ -4,6 +4,7 @@ enum MediaSourceType: String, Codable, CaseIterable, Sendable {
     case photos
     case files
     case remoteURL
+    case clipboard
 
     var title: String {
         switch self {
@@ -13,6 +14,8 @@ enum MediaSourceType: String, Codable, CaseIterable, Sendable {
             return "Files"
         case .remoteURL:
             return "URL"
+        case .clipboard:
+            return "Clipboard"
         }
     }
 }

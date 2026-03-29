@@ -28,6 +28,15 @@ struct ImportMediaSheet: View {
                     } label: {
                         Label("Import from Files", systemImage: "folder")
                     }
+
+                    Button {
+                        Task {
+                            await viewModel.importFromClipboard(preferredFolderID: preferredFolderID)
+                            dismiss()
+                        }
+                    } label: {
+                        Label("Import Copied Media", systemImage: "doc.on.clipboard")
+                    }
                 }
 
                 Section("Direct URL") {
@@ -47,6 +56,11 @@ struct ImportMediaSheet: View {
                         }
                     }
                     .disabled(remoteURLText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+
+                Section("Tip") {
+                    Text("For messages you already received: in Messages, long-press the GIF or image, tap Copy, then use “Import Copied Media” here.")
+                        .foregroundStyle(Color.white.opacity(0.72))
                 }
             }
             .scrollContentBackground(.hidden)
