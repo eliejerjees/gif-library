@@ -13,11 +13,19 @@ final class MessagesViewController: MSMessagesAppViewController {
 
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
+        embedSwiftUIViewIfNeeded()
+        requestPresentationStyle(.expanded)
+    }
+
+    override func didBecomeActive(with conversation: MSConversation) {
+        super.didBecomeActive(with: conversation)
+        embedSwiftUIViewIfNeeded()
         requestPresentationStyle(.expanded)
     }
 
     override func didSelect(_ message: MSMessage, conversation: MSConversation) {
         super.didSelect(message, conversation: conversation)
+        embedSwiftUIViewIfNeeded()
         requestPresentationStyle(.expanded)
     }
 
