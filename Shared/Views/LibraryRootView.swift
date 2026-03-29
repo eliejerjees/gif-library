@@ -43,6 +43,7 @@ struct LibraryRootView: View {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
                             header
+                            searchBar
                             tabPicker
                             tabContent
                         }
@@ -78,11 +79,6 @@ struct LibraryRootView: View {
                 }
             }
         }
-        .searchable(
-            text: $viewModel.searchText,
-            placement: .navigationBarDrawer(displayMode: .automatic),
-            prompt: "Search media"
-        )
         .preferredColorScheme(.dark)
         .task {
             await viewModel.load()
@@ -181,6 +177,37 @@ struct LibraryRootView: View {
             }
         }
         .pickerStyle(.segmented)
+    }
+
+    private var searchBar: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "magnifyingglass")
+                .foregroundStyle(Color.white.opacity(0.62))
+
+            TextField("Search media", text: $viewModel.searchText)
+                .foregroundStyle(.white)
+                .autocorrectionDisabled()
+
+            if !viewModel.searchText.isEmpty {
+                Button {
+                    viewModel.searchText = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(Color.white.opacity(0.45), Color.white.opacity(0.18))
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .background(
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(Color.white.opacity(0.06))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                }
+        )
     }
 
     @ViewBuilder
