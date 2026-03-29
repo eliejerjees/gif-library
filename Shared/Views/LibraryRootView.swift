@@ -41,6 +41,7 @@ struct LibraryRootView: View {
         GeometryReader { proxy in
             let usesBottomSearchBar = isShortPresentation(for: proxy.size.height)
             let usesSearchIcon = usesBottomSearchBar && experience.requestExpansionAction != nil
+            let usesCompactActionRowSearch = usesSearchIcon
 
             ZStack(alignment: .top) {
                 LibraryBackgroundView()
@@ -53,7 +54,7 @@ struct LibraryRootView: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 16) {
-                            actionRow
+                            actionRow(usesCompactSearchButton: usesCompactActionRowSearch)
 
                             if !usesSearchIcon {
                                 searchBar
@@ -70,14 +71,7 @@ struct LibraryRootView: View {
                     .scrollIndicators(.hidden)
                     .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                     .safeAreaInset(edge: .bottom, spacing: 0) {
-                        if usesSearchIcon {
-                            compactSearchBarButton
-                                .padding(.horizontal, 20)
-                                .padding(.top, 10)
-                                .padding(.bottom, 12)
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                .background(bottomControlBackground)
-                        } else if usesBottomSearchBar {
+                        if usesBottomSearchBar && !usesSearchIcon {
                             searchBar
                                 .padding(.horizontal, 20)
                                 .padding(.top, 10)
@@ -188,9 +182,11 @@ struct LibraryRootView: View {
         .ignoresSafeArea()
     }
 
-    private var actionRow: some View {
+    private func actionRow(usesCompactSearchButton: Bool) -> some View {
         HStack {
-            if viewModel.selectedTab == .folders {
+            if usesCompactSearchButton {
+                compactSearchBarButton
+            } else if viewModel.selectedTab == .folders {
                 CircleActionButton(systemImage: "folder.badge.plus") {
                     viewModel.beginCreatingFolder()
                 }
@@ -201,8 +197,8 @@ struct LibraryRootView: View {
 
             Spacer()
 
-            CircleActionButton(systemImage: "plus") {
-                isImportSheetPresented = true
+            CircleActionButton(systemImage: trailingActionSystemImage) {
+                trailingAction()
             }
         }
     }
@@ -212,6 +208,22 @@ struct LibraryRootView: View {
             pendingSearchFocus = true
             experience.requestExpansionAction?()
         }
+    }
+
+    private var trailingActionSystemImage: String {
+        viewModel.selectedTab == .folders ? "folder.badge.plus" : "plus"
+    }
+
+    private func trailingAction() {
+        if viewModel.selectedTab == .folders {
+            viewModel.beginCreatingFolder()
+        } else {
+            isImportSheetPresented = true
+        }
+    }
+
+    private var searchPlaceholder: String {
+        viewModel.selectedTab == .folders ? "Search folders" : "Search media"
     }
 
     private var tabPicker: some View {
@@ -228,7 +240,7 @@ struct LibraryRootView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(Color.white.opacity(0.62))
 
-            TextField("Search media", text: $viewModel.searchText)
+            TextField(searchPlaceholder, text: $viewModel.searchText)
                 .foregroundStyle(.white)
                 .autocorrectionDisabled()
                 .focused($isSearchFieldFocused)
@@ -258,21 +270,17 @@ struct LibraryRootView: View {
     @ViewBuilder
     private var tabContent: some View {
         Group {
-            if viewModel.isSearching {
-                SearchResultsView(viewModel: viewModel, experience: experience)
-            } else {
-                switch viewModel.selectedTab {
-                case .recent:
-                    RecentTabView(viewModel: viewModel, experience: experience)
-                case .folders:
-                    FoldersTabView(
-                        viewModel: viewModel,
-                        experience: experience,
-                        onOpenFolder: { folder in
-                            selectedFolderForDetail = folder
-                        }
-                    )
-                }
+            switch viewModel.selectedTab {
+            case .recent:
+                RecentTabView(viewModel: viewModel, experience: experience)
+            case .folders:
+                FoldersTabView(
+                    viewModel: viewModel,
+                    experience: experience,
+                    onOpenFolder: { folder in
+                        selectedFolderForDetail = folder
+                    }
+                )
             }
         }
         .padding(.top, 6)
@@ -286,34 +294,15 @@ private struct RecentTabView: View {
     var body: some View {
         if viewModel.filteredRecentItems.isEmpty {
             EmptyStateCard(
-                title: "No media yet",
-                message: "Import GIFs, still images, or a short video to convert into a GIF."
+                title: viewModel.isSearching ? "No matches" : "No media yet",
+                message: viewModel.isSearching
+                    ? "Try a different name or rename media to make it easier to find later."
+                    : "Import GIFs, still images, or a short video to convert into a GIF."
             )
         } else {
             MediaGridView(
                 viewModel: viewModel,
                 items: viewModel.filteredRecentItems,
-                experience: experience,
-                showFolderNames: true
-            )
-        }
-    }
-}
-
-private struct SearchResultsView: View {
-    @ObservedObject var viewModel: LibraryViewModel
-    let experience: LibraryExperience
-
-    var body: some View {
-        if viewModel.searchResults.isEmpty {
-            EmptyStateCard(
-                title: "No matches",
-                message: "Try a different name or rename media to make it easier to find later."
-            )
-        } else {
-            MediaGridView(
-                viewModel: viewModel,
-                items: viewModel.searchResults,
                 experience: experience,
                 showFolderNames: true
             )
@@ -328,13 +317,15 @@ private struct FoldersTabView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            if viewModel.folders.isEmpty {
+            if viewModel.filteredFolders.isEmpty {
                 EmptyStateCard(
-                    title: "No folders yet",
-                    message: "Create folders for favorites, reactions, memes, or anything else you reach for often."
+                    title: viewModel.isSearching ? "No matches" : "No folders yet",
+                    message: viewModel.isSearching
+                        ? "Try a different folder name or rename a folder to make it easier to find later."
+                        : "Create folders for favorites, reactions, memes, or anything else you reach for often."
                 )
             } else {
-                ForEach(viewModel.folders) { folder in
+                ForEach(viewModel.filteredFolders) { folder in
                     Button {
                         onOpenFolder(folder)
                     } label: {

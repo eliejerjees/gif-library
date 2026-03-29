@@ -65,13 +65,8 @@ final class LibraryViewModel: ObservableObject {
         filterItems(recentItems)
     }
 
-    var searchResults: [MediaAsset] {
-        filterItems(snapshot.items.sorted { lhs, rhs in
-            if lhs.recencyDate == rhs.recencyDate {
-                return lhs.createdAt > rhs.createdAt
-            }
-            return lhs.recencyDate > rhs.recencyDate
-        })
+    var filteredFolders: [MediaFolder] {
+        filterFolders(folders)
     }
 
     var isSearching: Bool {
@@ -306,6 +301,15 @@ final class LibraryViewModel: ObservableObject {
         return items.filter { item in
             item.displayName.localizedCaseInsensitiveContains(query)
                 || item.originalFilename.localizedCaseInsensitiveContains(query)
+        }
+    }
+
+    private func filterFolders(_ folders: [MediaFolder]) -> [MediaFolder] {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return folders }
+
+        return folders.filter { folder in
+            folder.name.localizedCaseInsensitiveContains(query)
         }
     }
 
