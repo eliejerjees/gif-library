@@ -33,7 +33,11 @@ final class MessagesViewController: MSMessagesAppViewController {
         guard hostingController == nil else { return }
 
         let rootView = LibraryRootView(
-            experience: .messages { [weak self] payload in
+            experience: .messages(
+                requestExpansionAction: { [weak self] in
+                    self?.requestPresentationStyle(.expanded)
+                },
+                sendAction: { [weak self] payload in
                 guard let self else {
                     throw MessageAttachmentSenderError.missingConversation
                 }
@@ -51,7 +55,7 @@ final class MessagesViewController: MSMessagesAppViewController {
                 await MainActor.run {
                     self.requestPresentationStyle(.compact)
                 }
-            }
+            })
         )
 
         let hostingController = UIHostingController(rootView: rootView)

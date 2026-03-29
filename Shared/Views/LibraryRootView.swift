@@ -3,20 +3,26 @@ import SwiftUI
 struct LibraryExperience {
     let title: String
     let subtitle: String?
+    let requestExpansionAction: (() -> Void)?
     let sendAction: (@Sendable (MediaSendPayload) async throws -> Void)?
 
     static func hostApp() -> LibraryExperience {
         LibraryExperience(
             title: "GIF Library",
             subtitle: "Use the host app for setup, extra imports, and fallback management. Day-to-day browsing and sending stays in Messages.",
+            requestExpansionAction: nil,
             sendAction: nil
         )
     }
 
-    static func messages(sendAction: @escaping @Sendable (MediaSendPayload) async throws -> Void) -> LibraryExperience {
+    static func messages(
+        requestExpansionAction: @escaping () -> Void,
+        sendAction: @escaping @Sendable (MediaSendPayload) async throws -> Void
+    ) -> LibraryExperience {
         LibraryExperience(
             title: "Library",
             subtitle: "Recent stays fast. Folders keep the rest tidy.",
+            requestExpansionAction: requestExpansionAction,
             sendAction: sendAction
         )
     }
@@ -26,12 +32,15 @@ struct LibraryRootView: View {
     @StateObject private var viewModel = LibraryViewModel()
     @State private var isImportSheetPresented = false
     @State private var selectedFolderForDetail: MediaFolder?
+    @State private var pendingSearchFocus = false
+    @FocusState private var isSearchFieldFocused: Bool
 
     let experience: LibraryExperience
 
     var body: some View {
         GeometryReader { proxy in
             let usesBottomSearchBar = isShortPresentation(for: proxy.size.height)
+            let usesSearchIcon = usesBottomSearchBar && experience.requestExpansionAction != nil
 
             ZStack(alignment: .top) {
                 LibraryBackgroundView()
@@ -46,7 +55,7 @@ struct LibraryRootView: View {
                         VStack(alignment: .leading, spacing: 16) {
                             actionRow
 
-                            if !usesBottomSearchBar {
+                            if !usesSearchIcon {
                                 searchBar
                             }
 
@@ -61,23 +70,19 @@ struct LibraryRootView: View {
                     .scrollIndicators(.hidden)
                     .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                     .safeAreaInset(edge: .bottom, spacing: 0) {
-                        if usesBottomSearchBar {
+                        if usesSearchIcon {
+                            compactSearchBarButton
+                                .padding(.horizontal, 20)
+                                .padding(.top, 10)
+                                .padding(.bottom, 12)
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .background(bottomControlBackground)
+                        } else if usesBottomSearchBar {
                             searchBar
                                 .padding(.horizontal, 20)
                                 .padding(.top, 10)
                                 .padding(.bottom, 12)
-                                .background(
-                                    LinearGradient(
-                                        colors: [
-                                            Color(red: 0.04, green: 0.05, blue: 0.09).opacity(0),
-                                            Color(red: 0.04, green: 0.05, blue: 0.09).opacity(0.92),
-                                            Color(red: 0.04, green: 0.05, blue: 0.09)
-                                        ],
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
-                                    .ignoresSafeArea()
-                                )
+                                .background(bottomControlBackground)
                         }
                     }
                 }
@@ -88,6 +93,12 @@ struct LibraryRootView: View {
                 }
             }
             .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+            .onChange(of: usesSearchIcon) { _, isCompact in
+                if !isCompact && pendingSearchFocus {
+                    isSearchFieldFocused = true
+                    pendingSearchFocus = false
+                }
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .preferredColorScheme(.dark)
@@ -164,6 +175,19 @@ struct LibraryRootView: View {
         height < 560
     }
 
+    private var bottomControlBackground: some View {
+        LinearGradient(
+            colors: [
+                Color(red: 0.04, green: 0.05, blue: 0.09).opacity(0),
+                Color(red: 0.04, green: 0.05, blue: 0.09).opacity(0.92),
+                Color(red: 0.04, green: 0.05, blue: 0.09)
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+        .ignoresSafeArea()
+    }
+
     private var actionRow: some View {
         HStack {
             if viewModel.selectedTab == .folders {
@@ -180,6 +204,13 @@ struct LibraryRootView: View {
             CircleActionButton(systemImage: "plus") {
                 isImportSheetPresented = true
             }
+        }
+    }
+
+    private var compactSearchBarButton: some View {
+        CircleActionButton(systemImage: "magnifyingglass") {
+            pendingSearchFocus = true
+            experience.requestExpansionAction?()
         }
     }
 
@@ -200,6 +231,7 @@ struct LibraryRootView: View {
             TextField("Search media", text: $viewModel.searchText)
                 .foregroundStyle(.white)
                 .autocorrectionDisabled()
+                .focused($isSearchFieldFocused)
 
             if !viewModel.searchText.isEmpty {
                 Button {
