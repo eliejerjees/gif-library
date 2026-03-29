@@ -38,6 +38,7 @@ struct FolderDetailView: View {
                         }
                     }
                     .padding(20)
+                    .padding(.bottom, 24)
                 }
                 .scrollIndicators(.hidden)
                 .background(Color.clear)

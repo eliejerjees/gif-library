@@ -5,25 +5,31 @@ import UniformTypeIdentifiers
 enum ClipboardImportService {
     static func copySupportedMediaToTemporaryURL(
         from pasteboard: UIPasteboard = .general
-    ) async throws -> URL {
+    ) async throws -> ImportedTemporaryMedia {
         for provider in pasteboard.itemProviders {
             guard let contentType = preferredContentType(for: provider) else {
                 continue
             }
 
             if let fileURL = try await loadFileRepresentation(from: provider, contentType: contentType) {
-                return fileURL
+                return ImportedTemporaryMedia(
+                    url: fileURL,
+                    suggestedName: provider.suggestedName?.trimmingCharacters(in: .whitespacesAndNewlines)
+                )
             }
 
             if let dataURL = try await loadDataRepresentation(from: provider, contentType: contentType) {
-                return dataURL
+                return ImportedTemporaryMedia(
+                    url: dataURL,
+                    suggestedName: provider.suggestedName?.trimmingCharacters(in: .whitespacesAndNewlines)
+                )
             }
         }
 
         if let image = pasteboard.image, let data = image.pngData() {
             let destinationURL = temporaryURL(extension: "png")
             try data.write(to: destinationURL, options: [.atomic])
-            return destinationURL
+            return ImportedTemporaryMedia(url: destinationURL, suggestedName: "Copied Image")
         }
 
         throw ClipboardImportError.noSupportedMedia

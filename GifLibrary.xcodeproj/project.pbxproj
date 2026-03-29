@@ -7,73 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0148182AEDEE6A5F5FB1CF79 /* MediaKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536D01F2DEAB4CBB5BB80E3 /* MediaKind.swift */; };
-		038ACA6A1D0C062B91BC1C51 /* HostRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1A37433FF9D6FB96CE861A /* HostRootView.swift */; };
-		08D5818FBF8B57A9A9D0904F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 593CC8E90E84A86B245E0A2E /* Foundation.framework */; };
-		0AAFA7A9B677000D19A23572 /* MediaComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CD5DA63B4BBDD02491ED04 /* MediaComposerSheet.swift */; };
-		0B605B153592B3BCEECDBA8B /* RemoteMediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7CD3BF62B83426B9BB21C5 /* RemoteMediaDownloader.swift */; };
-		1092A82C0E2C176FB4BE7774 /* ImportAndFolderSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD54BCF913D378ACEEC802 /* ImportAndFolderSheets.swift */; };
-		166BB9C9D3C2FB3705D38F44 /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8521315B196401F81C7E98BE /* MediaAsset.swift */; };
-		181152142F9050BFAE472AD5 /* GIFConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA1667635DC67E28843AAC0 /* GIFConverter.swift */; };
-		1A312274B18BEF381BB796AD /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EFF3239006B5122133DC06 /* MessagesViewController.swift */; };
-		200A994508455B5EEDACA2E6 /* MediaLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B1D215CFC26D6CF66CEBF2 /* MediaLibraryStore.swift */; };
-		21B730ED73C2A5960BF0238D /* GifLibraryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6858EFF6F775CDF8513D4 /* GifLibraryApp.swift */; };
-		250D6D0CFC652A4F9F28DB66 /* ImportAndFolderSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E14F8783885772FD038C4D /* ImportAndFolderSheets.swift */; };
-		269C1938F0C36E6DB17C5318 /* MediaFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBC473C8E65924AA719C7DE /* MediaFolder.swift */; };
-		2A888EC7DE7CC448F4AF7926 /* ThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8E331F82CC51C625C496FC /* ThumbnailService.swift */; };
-		366C347805525E9C064CBA36 /* GIFConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36666ECBF5323B6855784C12 /* GIFConverter.swift */; };
-		36883BD5CEC98E74DA163AFA /* SharedAppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBBED5AE0BA37F9A24E0804 /* SharedAppGroup.swift */; };
-		51FF6A95462C0CBFF650A79C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17162AF7E2BEC18CE2C365C /* Assets.xcassets */; };
-		5BC461CFEDA20223ADA06AB5 /* MessageAttachmentSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F15DF1228D9DA9EC51336F3 /* MessageAttachmentSender.swift */; };
-		5F0CA41048233406FDDDFA11 /* LibrarySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378140E8C80413A4F6B57F50 /* LibrarySnapshot.swift */; };
-		6B0B356C92361C289DADE761 /* SharedAppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55141B16CA6216490ADC6C9 /* SharedAppGroup.swift */; };
-		6D50AC80C760EE77BE7E7942 /* MediaKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587B60C9861E1E72F7D111E /* MediaKind.swift */; };
-		6D89718368DA4BB19A15A6AC /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9A12E50F538205ACA0D7B /* LibraryViewModel.swift */; };
-		739EBAFA06856D723A6E2775 /* MediaSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F9450A6AE63506D816DCD4 /* MediaSourceType.swift */; };
-		7E85340F366ED1B51DFB9C64 /* LibrarySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9962AE54C09B21A9EDAA4571 /* LibrarySnapshot.swift */; };
-		84BC6BC4EE3D11773BD15B78 /* LocalMediaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD044EF86E76457D46BE9B5 /* LocalMediaViews.swift */; };
-		87BB6ED0206A6A2FC8044CBD /* MediaSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F8420F4420FEDB04F73ADE /* MediaSourceType.swift */; };
-		888FB130686D55928A6F3614 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DECE5A8A1EAB68590975AC /* LibraryViewModel.swift */; };
-		895FDA98BC080F518FE71185 /* LibraryRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7937B77DA82D1801A0694785 /* LibraryRootView.swift */; };
-		93689C8C17B03BB5FBFFE8D4 /* MediaLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A289677F7A29627A9AED0CA9 /* MediaLibraryStore.swift */; };
-		A0489CC3AB95B5CCDA2B543C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC9D8BB0C93503E5B030C8A6 /* Assets.xcassets */; };
-		A1E5ADE99A07F3646530EF08 /* GifLibraryMessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B455A23B5B55913BA3CB972E /* GifLibraryMessagesExtension.appex */; };
-		A478F4ABB8A63A074DADD0A2 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6EAB9A586DD35CB4182F62 /* FolderDetailView.swift */; };
-		A4CF9DE61965AF1156B2D971 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 593CC8E90E84A86B245E0A2E /* Foundation.framework */; };
-		A5884710D33DF1C5B70AC8D5 /* LocalMediaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDD0754CE962D3D950C71F6 /* LocalMediaViews.swift */; };
-		B77AA721D5AC88E6D76D5C36 /* MediaComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D515E94F8F8239605CC447E0 /* MediaComposerSheet.swift */; };
-		BBB0EADF84ED4065AF5FE5BD /* LibraryRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065850805C5707BC8177CB09 /* LibraryRootView.swift */; };
-		BCDF15ABD4F84F46CF25ECF4 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C90BCACD380F7CFEBFD04B /* FolderDetailView.swift */; };
-		C3339309CAEDFEB075083B4C /* ClipboardImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F99F7784448E3D4FD34AA /* ClipboardImportService.swift */; };
-		C4AEFE3274DFE09C80D47307 /* MediaFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115F1063D9E62C99F5819F79 /* MediaFolder.swift */; };
-		CBD6D634E5184FFAC415795C /* PhotosPickerImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA67F7926A9DE41E21863BB6 /* PhotosPickerImport.swift */; };
-		CE12A2E6FEBA7F585183AF61 /* PhotosPickerImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBD7EBE3639962207B4EEC4 /* PhotosPickerImport.swift */; };
-		CFFEEF8E0E0146AD3E819E76 /* MediaGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D460648321227FBDB8EA388F /* MediaGridView.swift */; };
-		D9409329D679C43A753F2D51 /* RemoteMediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3652E9FF20F134762DD02ECE /* RemoteMediaDownloader.swift */; };
-		F119D118891EEC78D98985C2 /* ClipboardImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97306CCD384541579DDC7F /* ClipboardImportService.swift */; };
-		F1DB365AB5E7020434FEAC05 /* MediaGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4E813DF62B1CA461C45261 /* MediaGridView.swift */; };
-		FD5604FB3463DC425E5B6969 /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEF7EBD0C7F4D984B9791E /* MediaAsset.swift */; };
-		FE3FA5C09F238E67E94BE6BA /* ThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF0F0B539F1127D5028ABC /* ThumbnailService.swift */; };
+		02F13A707CA69A8262C39A58 /* MediaFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB1F3550D6AFDA7511F4A6C /* MediaFolder.swift */; };
+		058621AFEF1B8CED2B110127 /* MediaSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDFD7A6396C1F1C8B135532 /* MediaSourceType.swift */; };
+		08E68CD0AB59860ADD27CF1A /* RemoteMediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C948BFB2EF2870DE47DED99 /* RemoteMediaDownloader.swift */; };
+		1250085246C4C2ABABC9D026 /* MediaSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1EC3BA0ABA5FC7798FA0E5 /* MediaSourceType.swift */; };
+		1FA53D1C52FD857F2E836226 /* GifLibraryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637020DCA859A9260D791E6D /* GifLibraryApp.swift */; };
+		221058F541AA3046AAA7D1B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F787E5EC28247EA8B20FAF9B /* Assets.xcassets */; };
+		2EFC16F7A36360A9C194CA72 /* ThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D8B6D59E3597EBEBCF8 /* ThumbnailService.swift */; };
+		453144BB852BA8A52E1E4EBF /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A3388B3FBE6CF7FEBBBEFC /* LibraryViewModel.swift */; };
+		4CF5171FABA78F004B7BD157 /* LibrarySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83549CC3580D0CC7899FF62 /* LibrarySnapshot.swift */; };
+		532688CCCAED89E954B6CAB3 /* ClipboardImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C5FC827EF4C11E0003C79 /* ClipboardImportService.swift */; };
+		56C5FD457C59D79B3111A19C /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C7B952A3C0A88F617F429A /* MediaAsset.swift */; };
+		5AB80F503EB6CE8604669E29 /* ClipboardImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00BAD4A2095C13B441D8C4C /* ClipboardImportService.swift */; };
+		5C168E654A1482265DFD8916 /* ImportAndFolderSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035AEC355567B247907D3C7F /* ImportAndFolderSheets.swift */; };
+		6052ECE99F5508C9BEF46588 /* ThumbnailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986BE2749F3E363E658C0B48 /* ThumbnailService.swift */; };
+		65935C44E9A3B9FA8066BC72 /* MediaKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C7408F94AF183D75C7106 /* MediaKind.swift */; };
+		65C62638E45C807737C0EC93 /* LibraryRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E775643E7B837E2C4F09CD /* LibraryRootView.swift */; };
+		681E4F73754A72B6A2B0D199 /* LocalMediaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1EC98A3CC3500F1EDD0683 /* LocalMediaViews.swift */; };
+		79187897B7162F4F7B49F424 /* ItemEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16A8BFCB8D7C8A72BE1F71E /* ItemEditorSheet.swift */; };
+		8314FC418FD9B3DA85AB1FF4 /* MessageAttachmentSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18BDD4082E77843044F5B9F /* MessageAttachmentSender.swift */; };
+		83B7C149948705EEA7CDBED9 /* MediaComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069559B3F2D1F642C7C6AAE /* MediaComposerSheet.swift */; };
+		83C80DE412CD8F979214A719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C457D798189924EE7F9DC9F /* Assets.xcassets */; };
+		8C33A15DEBD57839CBA6EF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3665FCA5FAE36DE4200244 /* Foundation.framework */; };
+		90342DE1D5E284E1285D65D9 /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CC808A9D4804C1F1618428 /* MediaAsset.swift */; };
+		9B705079AE03334BFFC267F1 /* SharedAppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459CE1018C4B057739DFE5FA /* SharedAppGroup.swift */; };
+		9D0BED570820B4567A5DD891 /* MediaFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DC62F12273F93FC07083A8 /* MediaFolder.swift */; };
+		9ECB8D72754747144B178D07 /* GIFConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F410A8481AAED6FA8B2E1 /* GIFConverter.swift */; };
+		A0996602A68F497B0076FBE2 /* MediaGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF81F0987A9F75661903CA /* MediaGridView.swift */; };
+		AE025D2B5AA0DCC70D92BBF2 /* ImportAndFolderSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA59399AE314ED6D764FDD /* ImportAndFolderSheets.swift */; };
+		B09FF5AA04E9039376328727 /* SharedAppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17F015AC04D767BB6568CDE /* SharedAppGroup.swift */; };
+		B17DA9C2FCAEA88C2BE4C274 /* GIFConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA85BA3E89844240CFF74FED /* GIFConverter.swift */; };
+		B4E8B82A942D42AC207DF0E1 /* LocalMediaViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636087AF275E164A3C58ED6B /* LocalMediaViews.swift */; };
+		BE04CE0317DA570F766566BB /* RemoteMediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79739C1C8C2856C026807C80 /* RemoteMediaDownloader.swift */; };
+		C2DD762B601AC6983FD6DC46 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87373A1789F49F065308BBD1 /* LibraryViewModel.swift */; };
+		C3351FB92F6072DAA2964DAB /* MediaLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32858CEF1BBEB521F6B72B8 /* MediaLibraryStore.swift */; };
+		C3C3F46D227B2A3C9E53ED0E /* PhotosPickerImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C907DEF261425BD400AEFAD /* PhotosPickerImport.swift */; };
+		CAB26B299AD8B2A8A12DC250 /* MediaGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8880DE887BCC0928927E65E2 /* MediaGridView.swift */; };
+		CEDC409D53566E5937167AE0 /* GifLibraryMessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C37A9F24AD5801B5E5B0A87B /* GifLibraryMessagesExtension.appex */; };
+		CF6EE98DECE46F6235D5902F /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F2D8A2BAF424BD1F5E582A /* FolderDetailView.swift */; };
+		D058E45E011833520B988DE7 /* ItemEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EF20302742140DA165332C /* ItemEditorSheet.swift */; };
+		DF265851E521E9FAFDE16B49 /* MediaComposerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B729C07706291821114149DD /* MediaComposerSheet.swift */; };
+		E022A0BD5D0026587E03F57E /* LibrarySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFE5752EA5A296D84E4B32C /* LibrarySnapshot.swift */; };
+		E1D729B4777C1E30CA8968F2 /* MediaLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5732E8F89D0024F7EC275B7C /* MediaLibraryStore.swift */; };
+		E6B3417E59DF782D742BB265 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFB619F22FB46A577A9E48D /* MessagesViewController.swift */; };
+		F1F49645868029239E8C8CC1 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71F5FE94C45EA5EC31929FB /* FolderDetailView.swift */; };
+		F514FDA3CDA196B671FDD5F3 /* PhotosPickerImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39D77E42CFD5627186179E /* PhotosPickerImport.swift */; };
+		F86314A41E8ED853D292199E /* LibraryRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD18092D4A0D592E64A7C1 /* LibraryRootView.swift */; };
+		F9DBAFADF82060336A9C65D2 /* HostRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640D77D8F32CF7A39A08BEF6 /* HostRootView.swift */; };
+		FD2131A39BBFD5C58344D2A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3665FCA5FAE36DE4200244 /* Foundation.framework */; };
+		FEF4941D6A865948AE49FA0D /* MediaKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AF362B9E836CBB02C1437 /* MediaKind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		461FC2F87168A7D59495976D /* PBXContainerItemProxy */ = {
+		6ADA589AF6008E3CD8D96D1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 20A44E01F0A84937FCB606DC /* Project object */;
+			containerPortal = F5F9C1743E9FCAB3E8BDD256 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 35468BA5A8CA6D58A120391D;
+			remoteGlobalIDString = D5D3D2C05F67270C11F4989C;
 			remoteInfo = GifLibraryMessagesExtension;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		70ADD8476BE2F0A05FE11211 /* Embed App Extensions */ = {
+		F7FA82B51690BDBBA69B6A03 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A1E5ADE99A07F3646530EF08 /* GifLibraryMessagesExtension.appex in Embed App Extensions */,
+				CEDC409D53566E5937167AE0 /* GifLibraryMessagesExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,220 +83,224 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0536D01F2DEAB4CBB5BB80E3 /* MediaKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaKind.swift; path = Shared/Models/MediaKind.swift; sourceTree = "<group>"; };
-		065850805C5707BC8177CB09 /* LibraryRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryRootView.swift; path = Shared/Views/LibraryRootView.swift; sourceTree = "<group>"; };
-		0A4E813DF62B1CA461C45261 /* MediaGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaGridView.swift; path = Shared/Views/MediaGridView.swift; sourceTree = "<group>"; };
-		0DD044EF86E76457D46BE9B5 /* LocalMediaViews.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalMediaViews.swift; path = Shared/Views/LocalMediaViews.swift; sourceTree = "<group>"; };
-		115F1063D9E62C99F5819F79 /* MediaFolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaFolder.swift; path = Shared/Models/MediaFolder.swift; sourceTree = "<group>"; };
-		1AA747F38A982FBE77AD9DF5 /* GifLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		21CD5DA63B4BBDD02491ED04 /* MediaComposerSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaComposerSheet.swift; path = Shared/Views/MediaComposerSheet.swift; sourceTree = "<group>"; };
-		2DA1667635DC67E28843AAC0 /* GIFConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFConverter.swift; path = Shared/Services/GIFConverter.swift; sourceTree = "<group>"; };
-		2EBD7EBE3639962207B4EEC4 /* PhotosPickerImport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotosPickerImport.swift; path = Shared/Services/PhotosPickerImport.swift; sourceTree = "<group>"; };
-		3652E9FF20F134762DD02ECE /* RemoteMediaDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoteMediaDownloader.swift; path = Shared/Services/RemoteMediaDownloader.swift; sourceTree = "<group>"; };
-		36666ECBF5323B6855784C12 /* GIFConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFConverter.swift; path = Shared/Services/GIFConverter.swift; sourceTree = "<group>"; };
-		378140E8C80413A4F6B57F50 /* LibrarySnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibrarySnapshot.swift; path = Shared/Models/LibrarySnapshot.swift; sourceTree = "<group>"; };
-		3EBBED5AE0BA37F9A24E0804 /* SharedAppGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedAppGroup.swift; path = Shared/Storage/SharedAppGroup.swift; sourceTree = "<group>"; };
-		4587B60C9861E1E72F7D111E /* MediaKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaKind.swift; path = Shared/Models/MediaKind.swift; sourceTree = "<group>"; };
-		4B6EAB9A586DD35CB4182F62 /* FolderDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FolderDetailView.swift; path = Shared/Views/FolderDetailView.swift; sourceTree = "<group>"; };
-		4E7CD3BF62B83426B9BB21C5 /* RemoteMediaDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoteMediaDownloader.swift; path = Shared/Services/RemoteMediaDownloader.swift; sourceTree = "<group>"; };
-		593CC8E90E84A86B245E0A2E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		5DDD0754CE962D3D950C71F6 /* LocalMediaViews.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalMediaViews.swift; path = Shared/Views/LocalMediaViews.swift; sourceTree = "<group>"; };
-		6CE6858EFF6F775CDF8513D4 /* GifLibraryApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GifLibraryApp.swift; path = App/HostApp/GifLibraryApp.swift; sourceTree = "<group>"; };
-		6F15DF1228D9DA9EC51336F3 /* MessageAttachmentSender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageAttachmentSender.swift; path = App/MessagesExtension/MessageAttachmentSender.swift; sourceTree = "<group>"; };
-		77EFF3239006B5122133DC06 /* MessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesViewController.swift; path = App/MessagesExtension/MessagesViewController.swift; sourceTree = "<group>"; };
-		7937B77DA82D1801A0694785 /* LibraryRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryRootView.swift; path = Shared/Views/LibraryRootView.swift; sourceTree = "<group>"; };
-		7F3F99F7784448E3D4FD34AA /* ClipboardImportService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClipboardImportService.swift; path = Shared/Services/ClipboardImportService.swift; sourceTree = "<group>"; };
-		8521315B196401F81C7E98BE /* MediaAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaAsset.swift; path = Shared/Models/MediaAsset.swift; sourceTree = "<group>"; };
-		8B97306CCD384541579DDC7F /* ClipboardImportService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClipboardImportService.swift; path = Shared/Services/ClipboardImportService.swift; sourceTree = "<group>"; };
-		8DBC473C8E65924AA719C7DE /* MediaFolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaFolder.swift; path = Shared/Models/MediaFolder.swift; sourceTree = "<group>"; };
-		8F1A37433FF9D6FB96CE861A /* HostRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HostRootView.swift; path = App/HostApp/HostRootView.swift; sourceTree = "<group>"; };
-		90F8420F4420FEDB04F73ADE /* MediaSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaSourceType.swift; path = Shared/Models/MediaSourceType.swift; sourceTree = "<group>"; };
-		91E14F8783885772FD038C4D /* ImportAndFolderSheets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImportAndFolderSheets.swift; path = Shared/Views/ImportAndFolderSheets.swift; sourceTree = "<group>"; };
-		92AEF7EBD0C7F4D984B9791E /* MediaAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaAsset.swift; path = Shared/Models/MediaAsset.swift; sourceTree = "<group>"; };
-		9962AE54C09B21A9EDAA4571 /* LibrarySnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibrarySnapshot.swift; path = Shared/Models/LibrarySnapshot.swift; sourceTree = "<group>"; };
-		9BFD54BCF913D378ACEEC802 /* ImportAndFolderSheets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImportAndFolderSheets.swift; path = Shared/Views/ImportAndFolderSheets.swift; sourceTree = "<group>"; };
-		A1A9A12E50F538205ACA0D7B /* LibraryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryViewModel.swift; path = Shared/ViewModels/LibraryViewModel.swift; sourceTree = "<group>"; };
-		A289677F7A29627A9AED0CA9 /* MediaLibraryStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaLibraryStore.swift; path = Shared/Storage/MediaLibraryStore.swift; sourceTree = "<group>"; };
-		A5DECE5A8A1EAB68590975AC /* LibraryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryViewModel.swift; path = Shared/ViewModels/LibraryViewModel.swift; sourceTree = "<group>"; };
-		A7C90BCACD380F7CFEBFD04B /* FolderDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FolderDetailView.swift; path = Shared/Views/FolderDetailView.swift; sourceTree = "<group>"; };
-		A8B1D215CFC26D6CF66CEBF2 /* MediaLibraryStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaLibraryStore.swift; path = Shared/Storage/MediaLibraryStore.swift; sourceTree = "<group>"; };
-		AA67F7926A9DE41E21863BB6 /* PhotosPickerImport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotosPickerImport.swift; path = Shared/Services/PhotosPickerImport.swift; sourceTree = "<group>"; };
-		B455A23B5B55913BA3CB972E /* GifLibraryMessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GifLibraryMessagesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C17162AF7E2BEC18CE2C365C /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/MessagesExtension/Assets.xcassets; sourceTree = "<group>"; };
-		C2F9450A6AE63506D816DCD4 /* MediaSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaSourceType.swift; path = Shared/Models/MediaSourceType.swift; sourceTree = "<group>"; };
-		D460648321227FBDB8EA388F /* MediaGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaGridView.swift; path = Shared/Views/MediaGridView.swift; sourceTree = "<group>"; };
-		D515E94F8F8239605CC447E0 /* MediaComposerSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaComposerSheet.swift; path = Shared/Views/MediaComposerSheet.swift; sourceTree = "<group>"; };
-		DC9D8BB0C93503E5B030C8A6 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/HostApp/Assets.xcassets; sourceTree = "<group>"; };
-		E55141B16CA6216490ADC6C9 /* SharedAppGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedAppGroup.swift; path = Shared/Storage/SharedAppGroup.swift; sourceTree = "<group>"; };
-		EB8E331F82CC51C625C496FC /* ThumbnailService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThumbnailService.swift; path = Shared/Services/ThumbnailService.swift; sourceTree = "<group>"; };
-		F6FF0F0B539F1127D5028ABC /* ThumbnailService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThumbnailService.swift; path = Shared/Services/ThumbnailService.swift; sourceTree = "<group>"; };
+		01E775643E7B837E2C4F09CD /* LibraryRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryRootView.swift; path = Shared/Views/LibraryRootView.swift; sourceTree = "<group>"; };
+		035AEC355567B247907D3C7F /* ImportAndFolderSheets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImportAndFolderSheets.swift; path = Shared/Views/ImportAndFolderSheets.swift; sourceTree = "<group>"; };
+		09EA59399AE314ED6D764FDD /* ImportAndFolderSheets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImportAndFolderSheets.swift; path = Shared/Views/ImportAndFolderSheets.swift; sourceTree = "<group>"; };
+		0B6AF362B9E836CBB02C1437 /* MediaKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaKind.swift; path = Shared/Models/MediaKind.swift; sourceTree = "<group>"; };
+		216C7408F94AF183D75C7106 /* MediaKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaKind.swift; path = Shared/Models/MediaKind.swift; sourceTree = "<group>"; };
+		31BD18092D4A0D592E64A7C1 /* LibraryRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryRootView.swift; path = Shared/Views/LibraryRootView.swift; sourceTree = "<group>"; };
+		39DC62F12273F93FC07083A8 /* MediaFolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaFolder.swift; path = Shared/Models/MediaFolder.swift; sourceTree = "<group>"; };
+		3C907DEF261425BD400AEFAD /* PhotosPickerImport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotosPickerImport.swift; path = Shared/Services/PhotosPickerImport.swift; sourceTree = "<group>"; };
+		3D1EC98A3CC3500F1EDD0683 /* LocalMediaViews.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalMediaViews.swift; path = Shared/Views/LocalMediaViews.swift; sourceTree = "<group>"; };
+		44A3388B3FBE6CF7FEBBBEFC /* LibraryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryViewModel.swift; path = Shared/ViewModels/LibraryViewModel.swift; sourceTree = "<group>"; };
+		459CE1018C4B057739DFE5FA /* SharedAppGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedAppGroup.swift; path = Shared/Storage/SharedAppGroup.swift; sourceTree = "<group>"; };
+		4A3665FCA5FAE36DE4200244 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4B39D77E42CFD5627186179E /* PhotosPickerImport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhotosPickerImport.swift; path = Shared/Services/PhotosPickerImport.swift; sourceTree = "<group>"; };
+		4CDF81F0987A9F75661903CA /* MediaGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaGridView.swift; path = Shared/Views/MediaGridView.swift; sourceTree = "<group>"; };
+		4F5C5FC827EF4C11E0003C79 /* ClipboardImportService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClipboardImportService.swift; path = Shared/Services/ClipboardImportService.swift; sourceTree = "<group>"; };
+		5732E8F89D0024F7EC275B7C /* MediaLibraryStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaLibraryStore.swift; path = Shared/Storage/MediaLibraryStore.swift; sourceTree = "<group>"; };
+		5C457D798189924EE7F9DC9F /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/HostApp/Assets.xcassets; sourceTree = "<group>"; };
+		5F1EC3BA0ABA5FC7798FA0E5 /* MediaSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaSourceType.swift; path = Shared/Models/MediaSourceType.swift; sourceTree = "<group>"; };
+		5FB1F3550D6AFDA7511F4A6C /* MediaFolder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaFolder.swift; path = Shared/Models/MediaFolder.swift; sourceTree = "<group>"; };
+		636087AF275E164A3C58ED6B /* LocalMediaViews.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalMediaViews.swift; path = Shared/Views/LocalMediaViews.swift; sourceTree = "<group>"; };
+		637020DCA859A9260D791E6D /* GifLibraryApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GifLibraryApp.swift; path = App/HostApp/GifLibraryApp.swift; sourceTree = "<group>"; };
+		640D77D8F32CF7A39A08BEF6 /* HostRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HostRootView.swift; path = App/HostApp/HostRootView.swift; sourceTree = "<group>"; };
+		68CC808A9D4804C1F1618428 /* MediaAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaAsset.swift; path = Shared/Models/MediaAsset.swift; sourceTree = "<group>"; };
+		69596F603588DF44D59A1E4C /* GifLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GifLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CDFD7A6396C1F1C8B135532 /* MediaSourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaSourceType.swift; path = Shared/Models/MediaSourceType.swift; sourceTree = "<group>"; };
+		78C7B952A3C0A88F617F429A /* MediaAsset.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaAsset.swift; path = Shared/Models/MediaAsset.swift; sourceTree = "<group>"; };
+		79739C1C8C2856C026807C80 /* RemoteMediaDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoteMediaDownloader.swift; path = Shared/Services/RemoteMediaDownloader.swift; sourceTree = "<group>"; };
+		87373A1789F49F065308BBD1 /* LibraryViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibraryViewModel.swift; path = Shared/ViewModels/LibraryViewModel.swift; sourceTree = "<group>"; };
+		8880DE887BCC0928927E65E2 /* MediaGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaGridView.swift; path = Shared/Views/MediaGridView.swift; sourceTree = "<group>"; };
+		8C948BFB2EF2870DE47DED99 /* RemoteMediaDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RemoteMediaDownloader.swift; path = Shared/Services/RemoteMediaDownloader.swift; sourceTree = "<group>"; };
+		986BE2749F3E363E658C0B48 /* ThumbnailService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThumbnailService.swift; path = Shared/Services/ThumbnailService.swift; sourceTree = "<group>"; };
+		9B6F410A8481AAED6FA8B2E1 /* GIFConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFConverter.swift; path = Shared/Services/GIFConverter.swift; sourceTree = "<group>"; };
+		A069559B3F2D1F642C7C6AAE /* MediaComposerSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaComposerSheet.swift; path = Shared/Views/MediaComposerSheet.swift; sourceTree = "<group>"; };
+		AA85BA3E89844240CFF74FED /* GIFConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GIFConverter.swift; path = Shared/Services/GIFConverter.swift; sourceTree = "<group>"; };
+		AFFB619F22FB46A577A9E48D /* MessagesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessagesViewController.swift; path = App/MessagesExtension/MessagesViewController.swift; sourceTree = "<group>"; };
+		B18BDD4082E77843044F5B9F /* MessageAttachmentSender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageAttachmentSender.swift; path = App/MessagesExtension/MessageAttachmentSender.swift; sourceTree = "<group>"; };
+		B5B29D8B6D59E3597EBEBCF8 /* ThumbnailService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThumbnailService.swift; path = Shared/Services/ThumbnailService.swift; sourceTree = "<group>"; };
+		B729C07706291821114149DD /* MediaComposerSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaComposerSheet.swift; path = Shared/Views/MediaComposerSheet.swift; sourceTree = "<group>"; };
+		C37A9F24AD5801B5E5B0A87B /* GifLibraryMessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GifLibraryMessagesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71F5FE94C45EA5EC31929FB /* FolderDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FolderDetailView.swift; path = Shared/Views/FolderDetailView.swift; sourceTree = "<group>"; };
+		D17F015AC04D767BB6568CDE /* SharedAppGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedAppGroup.swift; path = Shared/Storage/SharedAppGroup.swift; sourceTree = "<group>"; };
+		D32858CEF1BBEB521F6B72B8 /* MediaLibraryStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MediaLibraryStore.swift; path = Shared/Storage/MediaLibraryStore.swift; sourceTree = "<group>"; };
+		E00BAD4A2095C13B441D8C4C /* ClipboardImportService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClipboardImportService.swift; path = Shared/Services/ClipboardImportService.swift; sourceTree = "<group>"; };
+		E16A8BFCB8D7C8A72BE1F71E /* ItemEditorSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemEditorSheet.swift; path = Shared/Views/ItemEditorSheet.swift; sourceTree = "<group>"; };
+		E7EF20302742140DA165332C /* ItemEditorSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ItemEditorSheet.swift; path = Shared/Views/ItemEditorSheet.swift; sourceTree = "<group>"; };
+		E83549CC3580D0CC7899FF62 /* LibrarySnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibrarySnapshot.swift; path = Shared/Models/LibrarySnapshot.swift; sourceTree = "<group>"; };
+		E8F2D8A2BAF424BD1F5E582A /* FolderDetailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FolderDetailView.swift; path = Shared/Views/FolderDetailView.swift; sourceTree = "<group>"; };
+		F787E5EC28247EA8B20FAF9B /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/MessagesExtension/Assets.xcassets; sourceTree = "<group>"; };
+		FEFE5752EA5A296D84E4B32C /* LibrarySnapshot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LibrarySnapshot.swift; path = Shared/Models/LibrarySnapshot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5F667CDC6590D785FA0BF6AF /* Frameworks */ = {
+		D6D2F34387420EC9A9CE395E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4CF9DE61965AF1156B2D971 /* Foundation.framework in Frameworks */,
+				FD2131A39BBFD5C58344D2A4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3F050B22EDEF5A8346FBFF1 /* Frameworks */ = {
+		DB6EFBAB11A6F41718071337 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08D5818FBF8B57A9A9D0904F /* Foundation.framework in Frameworks */,
+				8C33A15DEBD57839CBA6EF7C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		005B7D693AD1BBCAD65C8BDC /* Shared */ = {
+		24C2973F8A62B2A042A6C091 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A448FE01BF099D6AF76632F /* Models */,
-				E53F88AF84F7D54EFCAD0AB2 /* Services */,
-				CFEDDB75D63B833BC1A6ECC4 /* Storage */,
-				BCE4A18067316E680B8B4819 /* ViewModels */,
-				F591E214EBBDA0668103ECB1 /* Views */,
-			);
-			name = Shared;
-			sourceTree = "<group>";
-		};
-		0723F92978E27CFAA62BFB73 /* MessagesExtension */ = {
-			isa = PBXGroup;
-			children = (
-				6F15DF1228D9DA9EC51336F3 /* MessageAttachmentSender.swift */,
-				77EFF3239006B5122133DC06 /* MessagesViewController.swift */,
-				C17162AF7E2BEC18CE2C365C /* Assets.xcassets */,
-			);
-			name = MessagesExtension;
-			sourceTree = "<group>";
-		};
-		38866580F2FC0492E5FF8D42 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				39E97189052A706F6357E6D8 /* HostApp */,
-				0723F92978E27CFAA62BFB73 /* MessagesExtension */,
-			);
-			name = App;
-			sourceTree = "<group>";
-		};
-		39E97189052A706F6357E6D8 /* HostApp */ = {
-			isa = PBXGroup;
-			children = (
-				6CE6858EFF6F775CDF8513D4 /* GifLibraryApp.swift */,
-				8F1A37433FF9D6FB96CE861A /* HostRootView.swift */,
-				DC9D8BB0C93503E5B030C8A6 /* Assets.xcassets */,
-			);
-			name = HostApp;
-			sourceTree = "<group>";
-		};
-		47D05E40CADE10435E5C7DFE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F85B946154417551C55A62A0 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		72A842DA720695DB156AA04B = {
-			isa = PBXGroup;
-			children = (
-				EBFC05A7E956669E5A01CA78 /* Products */,
-				47D05E40CADE10435E5C7DFE /* Frameworks */,
-				005B7D693AD1BBCAD65C8BDC /* Shared */,
-				38866580F2FC0492E5FF8D42 /* App */,
-			);
-			sourceTree = "<group>";
-		};
-		9A448FE01BF099D6AF76632F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				9962AE54C09B21A9EDAA4571 /* LibrarySnapshot.swift */,
-				8521315B196401F81C7E98BE /* MediaAsset.swift */,
-				115F1063D9E62C99F5819F79 /* MediaFolder.swift */,
-				4587B60C9861E1E72F7D111E /* MediaKind.swift */,
-				C2F9450A6AE63506D816DCD4 /* MediaSourceType.swift */,
-				378140E8C80413A4F6B57F50 /* LibrarySnapshot.swift */,
-				92AEF7EBD0C7F4D984B9791E /* MediaAsset.swift */,
-				8DBC473C8E65924AA719C7DE /* MediaFolder.swift */,
-				0536D01F2DEAB4CBB5BB80E3 /* MediaKind.swift */,
-				90F8420F4420FEDB04F73ADE /* MediaSourceType.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		BCE4A18067316E680B8B4819 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				A5DECE5A8A1EAB68590975AC /* LibraryViewModel.swift */,
-				A1A9A12E50F538205ACA0D7B /* LibraryViewModel.swift */,
-			);
-			name = ViewModels;
-			sourceTree = "<group>";
-		};
-		CFEDDB75D63B833BC1A6ECC4 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				A8B1D215CFC26D6CF66CEBF2 /* MediaLibraryStore.swift */,
-				E55141B16CA6216490ADC6C9 /* SharedAppGroup.swift */,
-				A289677F7A29627A9AED0CA9 /* MediaLibraryStore.swift */,
-				3EBBED5AE0BA37F9A24E0804 /* SharedAppGroup.swift */,
-			);
-			name = Storage;
-			sourceTree = "<group>";
-		};
-		E53F88AF84F7D54EFCAD0AB2 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				8B97306CCD384541579DDC7F /* ClipboardImportService.swift */,
-				2DA1667635DC67E28843AAC0 /* GIFConverter.swift */,
-				2EBD7EBE3639962207B4EEC4 /* PhotosPickerImport.swift */,
-				4E7CD3BF62B83426B9BB21C5 /* RemoteMediaDownloader.swift */,
-				EB8E331F82CC51C625C496FC /* ThumbnailService.swift */,
-				7F3F99F7784448E3D4FD34AA /* ClipboardImportService.swift */,
-				36666ECBF5323B6855784C12 /* GIFConverter.swift */,
-				AA67F7926A9DE41E21863BB6 /* PhotosPickerImport.swift */,
-				3652E9FF20F134762DD02ECE /* RemoteMediaDownloader.swift */,
-				F6FF0F0B539F1127D5028ABC /* ThumbnailService.swift */,
-			);
-			name = Services;
-			sourceTree = "<group>";
-		};
-		EBFC05A7E956669E5A01CA78 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1AA747F38A982FBE77AD9DF5 /* GifLibrary.app */,
-				B455A23B5B55913BA3CB972E /* GifLibraryMessagesExtension.appex */,
+				69596F603588DF44D59A1E4C /* GifLibrary.app */,
+				C37A9F24AD5801B5E5B0A87B /* GifLibraryMessagesExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F591E214EBBDA0668103ECB1 /* Views */ = {
+		294985D663E450576F8CFDB3 /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
-				4B6EAB9A586DD35CB4182F62 /* FolderDetailView.swift */,
-				9BFD54BCF913D378ACEEC802 /* ImportAndFolderSheets.swift */,
-				7937B77DA82D1801A0694785 /* LibraryRootView.swift */,
-				0DD044EF86E76457D46BE9B5 /* LocalMediaViews.swift */,
-				D515E94F8F8239605CC447E0 /* MediaComposerSheet.swift */,
-				D460648321227FBDB8EA388F /* MediaGridView.swift */,
-				A7C90BCACD380F7CFEBFD04B /* FolderDetailView.swift */,
-				91E14F8783885772FD038C4D /* ImportAndFolderSheets.swift */,
-				065850805C5707BC8177CB09 /* LibraryRootView.swift */,
-				5DDD0754CE962D3D950C71F6 /* LocalMediaViews.swift */,
-				21CD5DA63B4BBDD02491ED04 /* MediaComposerSheet.swift */,
-				0A4E813DF62B1CA461C45261 /* MediaGridView.swift */,
+				B18BDD4082E77843044F5B9F /* MessageAttachmentSender.swift */,
+				AFFB619F22FB46A577A9E48D /* MessagesViewController.swift */,
+				F787E5EC28247EA8B20FAF9B /* Assets.xcassets */,
+			);
+			name = MessagesExtension;
+			sourceTree = "<group>";
+		};
+		3A546772EB1CF772BEF84016 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D554FE01F9855FB2DE2A0CAA /* Models */,
+				5F977FF7D6EA23F498216510 /* Services */,
+				7BDA0CAA27511FCA3B551FA8 /* Storage */,
+				57C324ECE1709D1576F67747 /* ViewModels */,
+				D24A2F68D92916E006E16E63 /* Views */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		57C324ECE1709D1576F67747 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				44A3388B3FBE6CF7FEBBBEFC /* LibraryViewModel.swift */,
+				87373A1789F49F065308BBD1 /* LibraryViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		5E2746C10B182F84DE8D2087 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				907BD713E53E85B6E66838D2 /* HostApp */,
+				294985D663E450576F8CFDB3 /* MessagesExtension */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		5F977FF7D6EA23F498216510 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4F5C5FC827EF4C11E0003C79 /* ClipboardImportService.swift */,
+				AA85BA3E89844240CFF74FED /* GIFConverter.swift */,
+				4B39D77E42CFD5627186179E /* PhotosPickerImport.swift */,
+				8C948BFB2EF2870DE47DED99 /* RemoteMediaDownloader.swift */,
+				B5B29D8B6D59E3597EBEBCF8 /* ThumbnailService.swift */,
+				E00BAD4A2095C13B441D8C4C /* ClipboardImportService.swift */,
+				9B6F410A8481AAED6FA8B2E1 /* GIFConverter.swift */,
+				3C907DEF261425BD400AEFAD /* PhotosPickerImport.swift */,
+				79739C1C8C2856C026807C80 /* RemoteMediaDownloader.swift */,
+				986BE2749F3E363E658C0B48 /* ThumbnailService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		75EB52098F0A7AF4A4FA0299 = {
+			isa = PBXGroup;
+			children = (
+				24C2973F8A62B2A042A6C091 /* Products */,
+				BF6AD0ACC936EB59E31AA453 /* Frameworks */,
+				3A546772EB1CF772BEF84016 /* Shared */,
+				5E2746C10B182F84DE8D2087 /* App */,
+			);
+			sourceTree = "<group>";
+		};
+		7BDA0CAA27511FCA3B551FA8 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				5732E8F89D0024F7EC275B7C /* MediaLibraryStore.swift */,
+				D17F015AC04D767BB6568CDE /* SharedAppGroup.swift */,
+				D32858CEF1BBEB521F6B72B8 /* MediaLibraryStore.swift */,
+				459CE1018C4B057739DFE5FA /* SharedAppGroup.swift */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		907BD713E53E85B6E66838D2 /* HostApp */ = {
+			isa = PBXGroup;
+			children = (
+				637020DCA859A9260D791E6D /* GifLibraryApp.swift */,
+				640D77D8F32CF7A39A08BEF6 /* HostRootView.swift */,
+				5C457D798189924EE7F9DC9F /* Assets.xcassets */,
+			);
+			name = HostApp;
+			sourceTree = "<group>";
+		};
+		BF6AD0ACC936EB59E31AA453 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E37DA21781296997324A2148 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D24A2F68D92916E006E16E63 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C71F5FE94C45EA5EC31929FB /* FolderDetailView.swift */,
+				09EA59399AE314ED6D764FDD /* ImportAndFolderSheets.swift */,
+				E16A8BFCB8D7C8A72BE1F71E /* ItemEditorSheet.swift */,
+				31BD18092D4A0D592E64A7C1 /* LibraryRootView.swift */,
+				3D1EC98A3CC3500F1EDD0683 /* LocalMediaViews.swift */,
+				B729C07706291821114149DD /* MediaComposerSheet.swift */,
+				4CDF81F0987A9F75661903CA /* MediaGridView.swift */,
+				E8F2D8A2BAF424BD1F5E582A /* FolderDetailView.swift */,
+				035AEC355567B247907D3C7F /* ImportAndFolderSheets.swift */,
+				E7EF20302742140DA165332C /* ItemEditorSheet.swift */,
+				01E775643E7B837E2C4F09CD /* LibraryRootView.swift */,
+				636087AF275E164A3C58ED6B /* LocalMediaViews.swift */,
+				A069559B3F2D1F642C7C6AAE /* MediaComposerSheet.swift */,
+				8880DE887BCC0928927E65E2 /* MediaGridView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		F85B946154417551C55A62A0 /* iOS */ = {
+		D554FE01F9855FB2DE2A0CAA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				593CC8E90E84A86B245E0A2E /* Foundation.framework */,
+				E83549CC3580D0CC7899FF62 /* LibrarySnapshot.swift */,
+				68CC808A9D4804C1F1618428 /* MediaAsset.swift */,
+				39DC62F12273F93FC07083A8 /* MediaFolder.swift */,
+				216C7408F94AF183D75C7106 /* MediaKind.swift */,
+				6CDFD7A6396C1F1C8B135532 /* MediaSourceType.swift */,
+				FEFE5752EA5A296D84E4B32C /* LibrarySnapshot.swift */,
+				78C7B952A3C0A88F617F429A /* MediaAsset.swift */,
+				5FB1F3550D6AFDA7511F4A6C /* MediaFolder.swift */,
+				0B6AF362B9E836CBB02C1437 /* MediaKind.swift */,
+				5F1EC3BA0ABA5FC7798FA0E5 /* MediaSourceType.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E37DA21781296997324A2148 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4A3665FCA5FAE36DE4200244 /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -302,13 +308,32 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		35468BA5A8CA6D58A120391D /* GifLibraryMessagesExtension */ = {
+		4EAF4911470728404649F780 /* GifLibrary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 059D62756295F791B5121218 /* Build configuration list for PBXNativeTarget "GifLibraryMessagesExtension" */;
+			buildConfigurationList = 0F09C5A75CABDCBDBE0F1876 /* Build configuration list for PBXNativeTarget "GifLibrary" */;
 			buildPhases = (
-				6CBA913A2C92C3920221D1A3 /* Sources */,
-				D3F050B22EDEF5A8346FBFF1 /* Frameworks */,
-				0A05F006835D5C49E98664DE /* Resources */,
+				CA003D4A2233E427161F369A /* Sources */,
+				D6D2F34387420EC9A9CE395E /* Frameworks */,
+				C24AD4979F836393B15D6845 /* Resources */,
+				F7FA82B51690BDBBA69B6A03 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				651BB9995EAC16EE5E548EFD /* PBXTargetDependency */,
+			);
+			name = GifLibrary;
+			productName = GifLibrary;
+			productReference = 69596F603588DF44D59A1E4C /* GifLibrary.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D5D3D2C05F67270C11F4989C /* GifLibraryMessagesExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C2DC3A654AF4F1770A64E75 /* Build configuration list for PBXNativeTarget "GifLibraryMessagesExtension" */;
+			buildPhases = (
+				D77EFC55954312D0B6C47D85 /* Sources */,
+				DB6EFBAB11A6F41718071337 /* Frameworks */,
+				4D4291E60F16B6ABAF2B5879 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -316,44 +341,25 @@
 			);
 			name = GifLibraryMessagesExtension;
 			productName = GifLibraryMessagesExtension;
-			productReference = B455A23B5B55913BA3CB972E /* GifLibraryMessagesExtension.appex */;
+			productReference = C37A9F24AD5801B5E5B0A87B /* GifLibraryMessagesExtension.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
-		};
-		9615E14395512EC045E38C1D /* GifLibrary */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7CF0D6E18EAC9ADAE0D57C3 /* Build configuration list for PBXNativeTarget "GifLibrary" */;
-			buildPhases = (
-				0D60821D8CAE58F64D37F57E /* Sources */,
-				5F667CDC6590D785FA0BF6AF /* Frameworks */,
-				D671612BFC0DEA1F12B07391 /* Resources */,
-				70ADD8476BE2F0A05FE11211 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C1650D154812A01537A632DA /* PBXTargetDependency */,
-			);
-			name = GifLibrary;
-			productName = GifLibrary;
-			productReference = 1AA747F38A982FBE77AD9DF5 /* GifLibrary.app */;
-			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		20A44E01F0A84937FCB606DC /* Project object */ = {
+		F5F9C1743E9FCAB3E8BDD256 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					35468BA5A8CA6D58A120391D = {
+					4EAF4911470728404649F780 = {
 					};
-					9615E14395512EC045E38C1D = {
+					D5D3D2C05F67270C11F4989C = {
 					};
 				};
 			};
-			buildConfigurationList = 9B7A7DD7344CBC7DC04412F7 /* Build configuration list for PBXProject "GifLibrary" */;
+			buildConfigurationList = 79EA981EAA6C2943A5100AFA /* Build configuration list for PBXProject "GifLibrary" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -361,108 +367,167 @@
 				en,
 				Base,
 			);
-			mainGroup = 72A842DA720695DB156AA04B;
+			mainGroup = 75EB52098F0A7AF4A4FA0299;
 			minimizedProjectReferenceProxies = 0;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = EBFC05A7E956669E5A01CA78 /* Products */;
+			productRefGroup = 24C2973F8A62B2A042A6C091 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9615E14395512EC045E38C1D /* GifLibrary */,
-				35468BA5A8CA6D58A120391D /* GifLibraryMessagesExtension */,
+				4EAF4911470728404649F780 /* GifLibrary */,
+				D5D3D2C05F67270C11F4989C /* GifLibraryMessagesExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0A05F006835D5C49E98664DE /* Resources */ = {
+		4D4291E60F16B6ABAF2B5879 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51FF6A95462C0CBFF650A79C /* Assets.xcassets in Resources */,
+				221058F541AA3046AAA7D1B6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D671612BFC0DEA1F12B07391 /* Resources */ = {
+		C24AD4979F836393B15D6845 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0489CC3AB95B5CCDA2B543C /* Assets.xcassets in Resources */,
+				83C80DE412CD8F979214A719 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0D60821D8CAE58F64D37F57E /* Sources */ = {
+		CA003D4A2233E427161F369A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E85340F366ED1B51DFB9C64 /* LibrarySnapshot.swift in Sources */,
-				166BB9C9D3C2FB3705D38F44 /* MediaAsset.swift in Sources */,
-				C4AEFE3274DFE09C80D47307 /* MediaFolder.swift in Sources */,
-				6D50AC80C760EE77BE7E7942 /* MediaKind.swift in Sources */,
-				739EBAFA06856D723A6E2775 /* MediaSourceType.swift in Sources */,
-				F119D118891EEC78D98985C2 /* ClipboardImportService.swift in Sources */,
-				181152142F9050BFAE472AD5 /* GIFConverter.swift in Sources */,
-				CE12A2E6FEBA7F585183AF61 /* PhotosPickerImport.swift in Sources */,
-				0B605B153592B3BCEECDBA8B /* RemoteMediaDownloader.swift in Sources */,
-				2A888EC7DE7CC448F4AF7926 /* ThumbnailService.swift in Sources */,
-				200A994508455B5EEDACA2E6 /* MediaLibraryStore.swift in Sources */,
-				6B0B356C92361C289DADE761 /* SharedAppGroup.swift in Sources */,
-				888FB130686D55928A6F3614 /* LibraryViewModel.swift in Sources */,
-				A478F4ABB8A63A074DADD0A2 /* FolderDetailView.swift in Sources */,
-				1092A82C0E2C176FB4BE7774 /* ImportAndFolderSheets.swift in Sources */,
-				895FDA98BC080F518FE71185 /* LibraryRootView.swift in Sources */,
-				84BC6BC4EE3D11773BD15B78 /* LocalMediaViews.swift in Sources */,
-				B77AA721D5AC88E6D76D5C36 /* MediaComposerSheet.swift in Sources */,
-				CFFEEF8E0E0146AD3E819E76 /* MediaGridView.swift in Sources */,
-				21B730ED73C2A5960BF0238D /* GifLibraryApp.swift in Sources */,
-				038ACA6A1D0C062B91BC1C51 /* HostRootView.swift in Sources */,
+				4CF5171FABA78F004B7BD157 /* LibrarySnapshot.swift in Sources */,
+				90342DE1D5E284E1285D65D9 /* MediaAsset.swift in Sources */,
+				9D0BED570820B4567A5DD891 /* MediaFolder.swift in Sources */,
+				65935C44E9A3B9FA8066BC72 /* MediaKind.swift in Sources */,
+				058621AFEF1B8CED2B110127 /* MediaSourceType.swift in Sources */,
+				532688CCCAED89E954B6CAB3 /* ClipboardImportService.swift in Sources */,
+				B17DA9C2FCAEA88C2BE4C274 /* GIFConverter.swift in Sources */,
+				F514FDA3CDA196B671FDD5F3 /* PhotosPickerImport.swift in Sources */,
+				08E68CD0AB59860ADD27CF1A /* RemoteMediaDownloader.swift in Sources */,
+				2EFC16F7A36360A9C194CA72 /* ThumbnailService.swift in Sources */,
+				E1D729B4777C1E30CA8968F2 /* MediaLibraryStore.swift in Sources */,
+				B09FF5AA04E9039376328727 /* SharedAppGroup.swift in Sources */,
+				453144BB852BA8A52E1E4EBF /* LibraryViewModel.swift in Sources */,
+				F1F49645868029239E8C8CC1 /* FolderDetailView.swift in Sources */,
+				AE025D2B5AA0DCC70D92BBF2 /* ImportAndFolderSheets.swift in Sources */,
+				79187897B7162F4F7B49F424 /* ItemEditorSheet.swift in Sources */,
+				F86314A41E8ED853D292199E /* LibraryRootView.swift in Sources */,
+				681E4F73754A72B6A2B0D199 /* LocalMediaViews.swift in Sources */,
+				DF265851E521E9FAFDE16B49 /* MediaComposerSheet.swift in Sources */,
+				A0996602A68F497B0076FBE2 /* MediaGridView.swift in Sources */,
+				1FA53D1C52FD857F2E836226 /* GifLibraryApp.swift in Sources */,
+				F9DBAFADF82060336A9C65D2 /* HostRootView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CBA913A2C92C3920221D1A3 /* Sources */ = {
+		D77EFC55954312D0B6C47D85 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F0CA41048233406FDDDFA11 /* LibrarySnapshot.swift in Sources */,
-				FD5604FB3463DC425E5B6969 /* MediaAsset.swift in Sources */,
-				269C1938F0C36E6DB17C5318 /* MediaFolder.swift in Sources */,
-				0148182AEDEE6A5F5FB1CF79 /* MediaKind.swift in Sources */,
-				87BB6ED0206A6A2FC8044CBD /* MediaSourceType.swift in Sources */,
-				C3339309CAEDFEB075083B4C /* ClipboardImportService.swift in Sources */,
-				366C347805525E9C064CBA36 /* GIFConverter.swift in Sources */,
-				CBD6D634E5184FFAC415795C /* PhotosPickerImport.swift in Sources */,
-				D9409329D679C43A753F2D51 /* RemoteMediaDownloader.swift in Sources */,
-				FE3FA5C09F238E67E94BE6BA /* ThumbnailService.swift in Sources */,
-				93689C8C17B03BB5FBFFE8D4 /* MediaLibraryStore.swift in Sources */,
-				36883BD5CEC98E74DA163AFA /* SharedAppGroup.swift in Sources */,
-				6D89718368DA4BB19A15A6AC /* LibraryViewModel.swift in Sources */,
-				BCDF15ABD4F84F46CF25ECF4 /* FolderDetailView.swift in Sources */,
-				250D6D0CFC652A4F9F28DB66 /* ImportAndFolderSheets.swift in Sources */,
-				BBB0EADF84ED4065AF5FE5BD /* LibraryRootView.swift in Sources */,
-				A5884710D33DF1C5B70AC8D5 /* LocalMediaViews.swift in Sources */,
-				0AAFA7A9B677000D19A23572 /* MediaComposerSheet.swift in Sources */,
-				F1DB365AB5E7020434FEAC05 /* MediaGridView.swift in Sources */,
-				5BC461CFEDA20223ADA06AB5 /* MessageAttachmentSender.swift in Sources */,
-				1A312274B18BEF381BB796AD /* MessagesViewController.swift in Sources */,
+				E022A0BD5D0026587E03F57E /* LibrarySnapshot.swift in Sources */,
+				56C5FD457C59D79B3111A19C /* MediaAsset.swift in Sources */,
+				02F13A707CA69A8262C39A58 /* MediaFolder.swift in Sources */,
+				FEF4941D6A865948AE49FA0D /* MediaKind.swift in Sources */,
+				1250085246C4C2ABABC9D026 /* MediaSourceType.swift in Sources */,
+				5AB80F503EB6CE8604669E29 /* ClipboardImportService.swift in Sources */,
+				9ECB8D72754747144B178D07 /* GIFConverter.swift in Sources */,
+				C3C3F46D227B2A3C9E53ED0E /* PhotosPickerImport.swift in Sources */,
+				BE04CE0317DA570F766566BB /* RemoteMediaDownloader.swift in Sources */,
+				6052ECE99F5508C9BEF46588 /* ThumbnailService.swift in Sources */,
+				C3351FB92F6072DAA2964DAB /* MediaLibraryStore.swift in Sources */,
+				9B705079AE03334BFFC267F1 /* SharedAppGroup.swift in Sources */,
+				C2DD762B601AC6983FD6DC46 /* LibraryViewModel.swift in Sources */,
+				CF6EE98DECE46F6235D5902F /* FolderDetailView.swift in Sources */,
+				5C168E654A1482265DFD8916 /* ImportAndFolderSheets.swift in Sources */,
+				D058E45E011833520B988DE7 /* ItemEditorSheet.swift in Sources */,
+				65C62638E45C807737C0EC93 /* LibraryRootView.swift in Sources */,
+				B4E8B82A942D42AC207DF0E1 /* LocalMediaViews.swift in Sources */,
+				83B7C149948705EEA7CDBED9 /* MediaComposerSheet.swift in Sources */,
+				CAB26B299AD8B2A8A12DC250 /* MediaGridView.swift in Sources */,
+				8314FC418FD9B3DA85AB1FF4 /* MessageAttachmentSender.swift in Sources */,
+				E6B3417E59DF782D742BB265 /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C1650D154812A01537A632DA /* PBXTargetDependency */ = {
+		651BB9995EAC16EE5E548EFD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GifLibraryMessagesExtension;
-			target = 35468BA5A8CA6D58A120391D /* GifLibraryMessagesExtension */;
-			targetProxy = 461FC2F87168A7D59495976D /* PBXContainerItemProxy */;
+			target = D5D3D2C05F67270C11F4989C /* GifLibraryMessagesExtension */;
+			targetProxy = 6ADA589AF6008E3CD8D96D1F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		169F5AA17930379AF700D287 /* Release */ = {
+		D12FF989D44951B025F7FDF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				APP_GROUP_IDENTIFIER = group.com.example.GifLibrary.shared;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = App/MessagesExtension/MessagesExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/MessagesExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.GifLibrary.MessagesExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E21AB797E8A253342BAA5A56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				APP_GROUP_IDENTIFIER = group.com.example.GifLibrary.shared;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = App/MessagesExtension/MessagesExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/MessagesExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.GifLibrary.MessagesExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E88D6EAB9975EA074B6B07F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
@@ -487,11 +552,64 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		EBD18B57DFBD9B9D4692A6FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		39137E1E8CBA6B588CC30C58 /* Debug */ = {
+		F6C5AC9CC609FD54B8956BC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -552,118 +670,7 @@
 			};
 			name = Debug;
 		};
-		3B1CFBD02B2023E30D01C324 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				APP_GROUP_IDENTIFIER = group.com.example.GifLibrary.shared;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_ENTITLEMENTS = App/MessagesExtension/MessagesExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = App/MessagesExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.GifLibrary.MessagesExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		76B729F4224709D4FF10E139 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		83E896DA2B7647E0792DCEBA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				APP_GROUP_IDENTIFIER = group.com.example.GifLibrary.shared;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_ENTITLEMENTS = App/MessagesExtension/MessagesExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = App/MessagesExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.GifLibrary.MessagesExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.9;
-				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		86E4CF7F00C5F513E8048FAE /* Debug */ = {
+		FB424A72191E285119CE64CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
@@ -688,40 +695,41 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		059D62756295F791B5121218 /* Build configuration list for PBXNativeTarget "GifLibraryMessagesExtension" */ = {
+		0F09C5A75CABDCBDBE0F1876 /* Build configuration list for PBXNativeTarget "GifLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83E896DA2B7647E0792DCEBA /* Release */,
-				3B1CFBD02B2023E30D01C324 /* Debug */,
+				FB424A72191E285119CE64CF /* Release */,
+				E88D6EAB9975EA074B6B07F5 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B7A7DD7344CBC7DC04412F7 /* Build configuration list for PBXProject "GifLibrary" */ = {
+		6C2DC3A654AF4F1770A64E75 /* Build configuration list for PBXNativeTarget "GifLibraryMessagesExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				39137E1E8CBA6B588CC30C58 /* Debug */,
-				76B729F4224709D4FF10E139 /* Release */,
+				E21AB797E8A253342BAA5A56 /* Release */,
+				D12FF989D44951B025F7FDF8 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7CF0D6E18EAC9ADAE0D57C3 /* Build configuration list for PBXNativeTarget "GifLibrary" */ = {
+		79EA981EAA6C2943A5100AFA /* Build configuration list for PBXProject "GifLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				169F5AA17930379AF700D287 /* Release */,
-				86E4CF7F00C5F513E8048FAE /* Debug */,
+				F6C5AC9CC609FD54B8956BC8 /* Debug */,
+				EBD18B57DFBD9B9D4692A6FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 20A44E01F0A84937FCB606DC /* Project object */;
+	rootObject = F5F9C1743E9FCAB3E8BDD256 /* Project object */;
 }

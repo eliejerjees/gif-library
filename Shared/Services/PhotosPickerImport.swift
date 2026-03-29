@@ -2,7 +2,7 @@ import Foundation
 import UniformTypeIdentifiers
 
 enum PhotosPickerImport {
-    static func copySelectedItemToTemporaryURL(from provider: NSItemProvider) async throws -> URL {
+    static func copySelectedItemToTemporaryURL(from provider: NSItemProvider) async throws -> ImportedTemporaryMedia {
         guard let contentType = preferredContentType(for: provider) else {
             throw PhotosPickerImportError.unsupportedSelection
         }
@@ -29,7 +29,10 @@ enum PhotosPickerImport {
                     }
 
                     try FileManager.default.copyItem(at: url, to: copiedURL)
-                    continuation.resume(returning: copiedURL)
+                    continuation.resume(returning: ImportedTemporaryMedia(
+                        url: copiedURL,
+                        suggestedName: provider.suggestedName?.trimmingCharacters(in: .whitespacesAndNewlines)
+                    ))
                 } catch {
                     continuation.resume(throwing: error)
                 }
@@ -64,6 +67,11 @@ enum PhotosPickerImportError: LocalizedError {
             return "The selected Photos item could not be copied."
         }
     }
+}
+
+struct ImportedTemporaryMedia: Sendable {
+    let url: URL
+    let suggestedName: String?
 }
 
 private extension String {

@@ -95,6 +95,23 @@ actor MediaLibraryStore {
     }
 
     @discardableResult
+    func renameItem(id: UUID, to rawName: String) throws -> LibrarySnapshot {
+        let trimmedName = normalizedDisplayName(from: rawName, fallbackFilename: nil)
+        guard !trimmedName.isEmpty else {
+            throw MediaLibraryStoreError.emptyMediaName
+        }
+
+        var snapshot = try loadSnapshot()
+        guard let index = snapshot.items.firstIndex(where: { $0.id == id }) else {
+            throw MediaLibraryStoreError.mediaNotFound
+        }
+
+        snapshot.items[index].displayName = trimmedName
+        try saveSnapshot(snapshot)
+        return snapshot
+    }
+
+    @discardableResult
     func deleteItem(id: UUID) throws -> LibrarySnapshot {
         var snapshot = try loadSnapshot()
         guard let item = snapshot.items.first(where: { $0.id == id }) else {
@@ -132,7 +149,8 @@ actor MediaLibraryStore {
     func importExternalFile(
         at sourceURL: URL,
         sourceType: MediaSourceType?,
-        preferredFolderID: UUID?
+        preferredFolderID: UUID?,
+        displayName: String?
     ) async throws -> LibrarySnapshot {
         let accessed = sourceURL.startAccessingSecurityScopedResource()
         defer {
@@ -150,7 +168,8 @@ actor MediaLibraryStore {
         let asset = try await persistImportedAsset(
             from: sourceURL,
             sourceType: sourceType,
-            folderID: preferredFolderID
+            folderID: preferredFolderID,
+            displayName: displayName
         )
 
         snapshot.items.append(asset)
@@ -161,7 +180,8 @@ actor MediaLibraryStore {
     private func persistImportedAsset(
         from sourceURL: URL,
         sourceType: MediaSourceType?,
-        folderID: UUID?
+        folderID: UUID?,
+        displayName: String?
     ) async throws -> MediaAsset {
         let itemID = UUID()
         let contentType = try resolveContentType(for: sourceURL)
@@ -211,8 +231,24 @@ actor MediaLibraryStore {
             folderID: folderID,
             originalSource: sourceType,
             captionHistory: [],
+            displayName: normalizedDisplayName(from: displayName, fallbackFilename: sourceURL.lastPathComponent),
             originalFilename: sourceURL.lastPathComponent
         )
+    }
+
+    private func normalizedDisplayName(from rawName: String?, fallbackFilename: String?) -> String {
+        let trimmed = rawName?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        if !trimmed.isEmpty {
+            return trimmed
+        }
+
+        guard let fallbackFilename else { return "" }
+        let fallback = URL(fileURLWithPath: fallbackFilename).deletingPathExtension().lastPathComponent
+        if !fallback.isEmpty {
+            return fallback
+        }
+
+        return fallbackFilename
     }
 
     private func copyItem(from sourceURL: URL, to destinationURL: URL) throws {
@@ -248,6 +284,7 @@ actor MediaLibraryStore {
 
 enum MediaLibraryStoreError: LocalizedError {
     case emptyFolderName
+    case emptyMediaName
     case folderAlreadyExists
     case folderNotFound
     case mediaNotFound
@@ -257,6 +294,8 @@ enum MediaLibraryStoreError: LocalizedError {
         switch self {
         case .emptyFolderName:
             return "Enter a folder name before saving."
+        case .emptyMediaName:
+            return "Enter a media name before saving."
         case .folderAlreadyExists:
             return "A folder with that name already exists."
         case .folderNotFound:

@@ -15,10 +15,12 @@ struct MediaSendPayload: Sendable {
 final class LibraryViewModel: ObservableObject {
     @Published private(set) var snapshot: LibrarySnapshot = .empty
     @Published var selectedTab: LibraryTab = .recent
+    @Published var searchText = ""
     @Published var alertState: AlertState?
     @Published var isBusy = false
     @Published var selectedAssetForComposer: MediaAsset?
     @Published var folderEditor: FolderEditorState?
+    @Published var itemEditor: ItemEditorState?
     @Published var itemBeingMoved: MediaAsset?
     @Published var folderPendingDeletion: MediaFolder?
 
@@ -60,6 +62,23 @@ final class LibraryViewModel: ObservableObject {
         !snapshot.items.isEmpty || !snapshot.folders.isEmpty
     }
 
+    var filteredRecentItems: [MediaAsset] {
+        filterItems(recentItems)
+    }
+
+    var searchResults: [MediaAsset] {
+        filterItems(snapshot.items.sorted { lhs, rhs in
+            if lhs.recencyDate == rhs.recencyDate {
+                return lhs.createdAt > rhs.createdAt
+            }
+            return lhs.recencyDate > rhs.recencyDate
+        })
+    }
+
+    var isSearching: Bool {
+        !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
     func load() async {
         guard let store else { return }
         do {
@@ -70,9 +89,11 @@ final class LibraryViewModel: ObservableObject {
     }
 
     func items(in folder: MediaFolder) -> [MediaAsset] {
-        snapshot.items
+        filterItems(
+            snapshot.items
             .filter { $0.folderID == folder.id }
             .sorted(by: { $0.recencyDate > $1.recencyDate })
+        )
     }
 
     func count(for folder: MediaFolder) -> Int {
@@ -105,6 +126,16 @@ final class LibraryViewModel: ObservableObject {
         do {
             snapshot = try await store.createFolder(named: name)
             folderEditor = nil
+        } catch {
+            present(error)
+        }
+    }
+
+    func renameItem(_ item: MediaAsset, to name: String) async {
+        guard let store else { return }
+        do {
+            snapshot = try await store.renameItem(id: item.id, to: name)
+            itemEditor = nil
         } catch {
             present(error)
         }
@@ -163,56 +194,56 @@ final class LibraryViewModel: ObservableObject {
     }
 
     func availableItems(forAddingTo folder: MediaFolder) -> [MediaAsset] {
-        snapshot.items
+        filterItems(snapshot.items
             .filter { $0.folderID != folder.id }
             .sorted { lhs, rhs in
                 if lhs.recencyDate == rhs.recencyDate {
                     return lhs.createdAt > rhs.createdAt
                 }
                 return lhs.recencyDate > rhs.recencyDate
-            }
+            })
     }
 
-    func importFromFiles(url: URL, preferredFolderID: UUID? = nil) async {
+    func importFromFiles(url: URL, displayName: String, preferredFolderID: UUID? = nil) async -> Bool {
         await performBusyWork { [self] in
             guard let store = self.store else { return }
             self.snapshot = try await store.importExternalFile(
                 at: url,
                 sourceType: .files,
-                preferredFolderID: preferredFolderID
+                preferredFolderID: preferredFolderID,
+                displayName: displayName
             )
         }
     }
 
-    func importFromPhotoProvider(_ provider: NSItemProvider, preferredFolderID: UUID? = nil) async {
+    func preparePhotoImport(from provider: NSItemProvider) async throws -> ImportedTemporaryMedia {
+        try await PhotosPickerImport.copySelectedItemToTemporaryURL(from: provider)
+    }
+
+    func importPreparedTemporaryFile(
+        at url: URL,
+        displayName: String,
+        sourceType: MediaSourceType,
+        preferredFolderID: UUID? = nil
+    ) async -> Bool {
         await performBusyWork { [self] in
-            let temporaryURL = try await PhotosPickerImport.copySelectedItemToTemporaryURL(from: provider)
-            defer { try? FileManager.default.removeItem(at: temporaryURL) }
+            defer { try? FileManager.default.removeItem(at: url) }
 
             guard let store = self.store else { return }
             self.snapshot = try await store.importExternalFile(
-                at: temporaryURL,
-                sourceType: .photos,
-                preferredFolderID: preferredFolderID
+                at: url,
+                sourceType: sourceType,
+                preferredFolderID: preferredFolderID,
+                displayName: displayName
             )
         }
     }
 
-    func importFromClipboard(preferredFolderID: UUID? = nil) async {
-        await performBusyWork { [self] in
-            let temporaryURL = try await ClipboardImportService.copySupportedMediaToTemporaryURL()
-            defer { try? FileManager.default.removeItem(at: temporaryURL) }
-
-            guard let store = self.store else { return }
-            self.snapshot = try await store.importExternalFile(
-                at: temporaryURL,
-                sourceType: .clipboard,
-                preferredFolderID: preferredFolderID
-            )
-        }
+    func prepareClipboardImport() async throws -> ImportedTemporaryMedia {
+        try await ClipboardImportService.copySupportedMediaToTemporaryURL()
     }
 
-    func importFromRemoteURLString(_ rawValue: String, preferredFolderID: UUID? = nil) async {
+    func importFromRemoteURLString(_ rawValue: String, displayName: String, preferredFolderID: UUID? = nil) async -> Bool {
         await performBusyWork { [self] in
             guard let parsedURL = URL(string: rawValue.trimmingCharacters(in: .whitespacesAndNewlines)),
                   let scheme = parsedURL.scheme?.lowercased(),
@@ -227,7 +258,8 @@ final class LibraryViewModel: ObservableObject {
             self.snapshot = try await store.importExternalFile(
                 at: downloadedURL,
                 sourceType: .remoteURL,
-                preferredFolderID: preferredFolderID
+                preferredFolderID: preferredFolderID,
+                displayName: displayName
             )
         }
     }
@@ -240,6 +272,10 @@ final class LibraryViewModel: ObservableObject {
         folderEditor = FolderEditorState(mode: .rename(folder), initialName: folder.name)
     }
 
+    func beginRenamingItem(_ item: MediaAsset) {
+        itemEditor = ItemEditorState(item: item, initialName: item.displayName)
+    }
+
     func beginMoving(_ item: MediaAsset) {
         itemBeingMoved = item
     }
@@ -249,14 +285,26 @@ final class LibraryViewModel: ObservableObject {
         alertState = AlertState(title: "Something went wrong", message: message)
     }
 
-    private func performBusyWork(operation: @escaping () async throws -> Void) async {
+    private func filterItems(_ items: [MediaAsset]) -> [MediaAsset] {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return items }
+
+        return items.filter { item in
+            item.displayName.localizedCaseInsensitiveContains(query)
+                || item.originalFilename.localizedCaseInsensitiveContains(query)
+        }
+    }
+
+    private func performBusyWork(operation: @escaping () async throws -> Void) async -> Bool {
         isBusy = true
         defer { isBusy = false }
 
         do {
             try await operation()
+            return true
         } catch {
             present(error)
+            return false
         }
     }
 }
@@ -294,6 +342,16 @@ struct FolderEditorState: Identifiable {
         case .rename:
             return "Rename Folder"
         }
+    }
+}
+
+struct ItemEditorState: Identifiable {
+    let id = UUID()
+    let item: MediaAsset
+    let initialName: String
+
+    var title: String {
+        "Rename Media"
     }
 }
 

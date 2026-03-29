@@ -7,7 +7,8 @@ struct MediaGridView: View {
     let showFolderNames: Bool
 
     private let columns = [
-        GridItem(.adaptive(minimum: 124, maximum: 180), spacing: 14)
+        GridItem(.flexible(), spacing: 14, alignment: .top),
+        GridItem(.flexible(), spacing: 14, alignment: .top)
     ]
 
     var body: some View {
@@ -26,6 +27,10 @@ struct MediaGridView: View {
                 .contextMenu {
                     Button(experience.sendAction == nil ? "Preview" : "Insert", systemImage: "paperplane") {
                         viewModel.showComposer(for: item)
+                    }
+
+                    Button("Rename", systemImage: "pencil") {
+                        viewModel.beginRenamingItem(item)
                     }
 
                     Button("Move to Folder", systemImage: "folder") {
@@ -64,6 +69,7 @@ struct MediaTileView: View {
             if let thumbnailURL {
                 LocalStaticImageView(url: thumbnailURL)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
             } else {
                 Color.white.opacity(0.06)
             }
@@ -82,7 +88,7 @@ struct MediaTileView: View {
                         .lineLimit(1)
                 }
 
-                Text(item.originalFilename)
+                Text(item.displayName)
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
                     .lineLimit(1)
@@ -90,6 +96,7 @@ struct MediaTileView: View {
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .frame(maxWidth: .infinity)
         .aspectRatio(1, contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay {

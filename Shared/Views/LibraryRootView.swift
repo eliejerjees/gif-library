@@ -78,6 +78,11 @@ struct LibraryRootView: View {
                 }
             }
         }
+        .searchable(
+            text: $viewModel.searchText,
+            placement: .navigationBarDrawer(displayMode: .automatic),
+            prompt: "Search media"
+        )
         .preferredColorScheme(.dark)
         .task {
             await viewModel.load()
@@ -104,6 +109,14 @@ struct LibraryRootView: View {
                     case .rename(let folder):
                         await viewModel.renameFolder(folder, to: name)
                     }
+                }
+            )
+        }
+        .sheet(item: $viewModel.itemEditor) { editor in
+            ItemEditorSheet(
+                state: editor,
+                onSave: { name in
+                    await viewModel.renameItem(editor.item, to: name)
                 }
             )
         }
@@ -173,11 +186,15 @@ struct LibraryRootView: View {
     @ViewBuilder
     private var tabContent: some View {
         Group {
-            switch viewModel.selectedTab {
-            case .recent:
-                RecentTabView(viewModel: viewModel, experience: experience)
-            case .folders:
-                FoldersTabView(viewModel: viewModel, experience: experience)
+            if viewModel.isSearching {
+                SearchResultsView(viewModel: viewModel, experience: experience)
+            } else {
+                switch viewModel.selectedTab {
+                case .recent:
+                    RecentTabView(viewModel: viewModel, experience: experience)
+                case .folders:
+                    FoldersTabView(viewModel: viewModel, experience: experience)
+                }
             }
         }
         .padding(.top, 6)
@@ -189,7 +206,7 @@ private struct RecentTabView: View {
     let experience: LibraryExperience
 
     var body: some View {
-        if viewModel.recentItems.isEmpty {
+        if viewModel.filteredRecentItems.isEmpty {
             EmptyStateCard(
                 title: "No media yet",
                 message: "Import GIFs, still images, or a short video to convert into a GIF."
@@ -197,7 +214,28 @@ private struct RecentTabView: View {
         } else {
             MediaGridView(
                 viewModel: viewModel,
-                items: viewModel.recentItems,
+                items: viewModel.filteredRecentItems,
+                experience: experience,
+                showFolderNames: true
+            )
+        }
+    }
+}
+
+private struct SearchResultsView: View {
+    @ObservedObject var viewModel: LibraryViewModel
+    let experience: LibraryExperience
+
+    var body: some View {
+        if viewModel.searchResults.isEmpty {
+            EmptyStateCard(
+                title: "No matches",
+                message: "Try a different name or rename media to make it easier to find later."
+            )
+        } else {
+            MediaGridView(
+                viewModel: viewModel,
+                items: viewModel.searchResults,
                 experience: experience,
                 showFolderNames: true
             )

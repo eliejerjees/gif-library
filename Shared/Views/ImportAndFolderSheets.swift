@@ -12,6 +12,7 @@ struct ImportMediaSheet: View {
     @State private var isPhotoPickerPresented = false
     @State private var isFileImporterPresented = false
     @State private var remoteURLText = ""
+    @State private var pendingImport: PendingImportDraft?
 
     var body: some View {
         NavigationStack {
@@ -31,8 +32,15 @@ struct ImportMediaSheet: View {
 
                     Button {
                         Task {
-                            await viewModel.importFromClipboard(preferredFolderID: preferredFolderID)
-                            dismiss()
+                            do {
+                                let prepared = try await viewModel.prepareClipboardImport()
+                                pendingImport = PendingImportDraft(
+                                    source: .temporaryFile(prepared.url, .clipboard),
+                                    suggestedName: prepared.suggestedName ?? "Copied Media"
+                                )
+                            } catch {
+                                viewModel.present(error)
+                            }
                         }
                     } label: {
                         Label("Import Copied Media", systemImage: "doc.on.clipboard")
@@ -50,10 +58,10 @@ struct ImportMediaSheet: View {
                     }
 
                     Button("Download and Save") {
-                        Task {
-                            await viewModel.importFromRemoteURLString(remoteURLText, preferredFolderID: preferredFolderID)
-                            dismiss()
-                        }
+                        pendingImport = PendingImportDraft(
+                            source: .remoteURL(remoteURLText),
+                            suggestedName: PendingImportDraft.defaultName(from: remoteURLText)
+                        )
                     }
                     .disabled(remoteURLText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
@@ -90,10 +98,10 @@ struct ImportMediaSheet: View {
                 switch result {
                 case .success(let urls):
                     guard let url = urls.first else { return }
-                    Task {
-                        await viewModel.importFromFiles(url: url, preferredFolderID: preferredFolderID)
-                        dismiss()
-                    }
+                    pendingImport = PendingImportDraft(
+                        source: .externalFile(url, .files),
+                        suggestedName: url.deletingPathExtension().lastPathComponent
+                    )
                 case .failure(let error):
                     viewModel.present(error)
                 }
@@ -101,10 +109,61 @@ struct ImportMediaSheet: View {
             .sheet(isPresented: $isPhotoPickerPresented) {
                 PhotoLibraryPickerView { provider in
                     Task {
-                        await viewModel.importFromPhotoProvider(provider, preferredFolderID: preferredFolderID)
-                        dismiss()
+                        do {
+                            let prepared = try await viewModel.preparePhotoImport(from: provider)
+                            pendingImport = PendingImportDraft(
+                                source: .temporaryFile(prepared.url, .photos),
+                                suggestedName: prepared.suggestedName ?? "Imported Media"
+                            )
+                        } catch {
+                            viewModel.present(error)
+                        }
                     }
                 }
+            }
+            .sheet(item: $pendingImport) { draft in
+                MediaImportNameSheet(
+                    draft: draft,
+                    onSave: { chosenName in
+                        let success: Bool
+
+                        switch draft.source {
+                        case .externalFile(let url, let sourceType):
+                            if sourceType == .files {
+                                success = await viewModel.importFromFiles(
+                                    url: url,
+                                    displayName: chosenName,
+                                    preferredFolderID: preferredFolderID
+                                )
+                            } else {
+                                success = await viewModel.importPreparedTemporaryFile(
+                                    at: url,
+                                    displayName: chosenName,
+                                    sourceType: sourceType,
+                                    preferredFolderID: preferredFolderID
+                                )
+                            }
+                        case .temporaryFile(let url, let sourceType):
+                            success = await viewModel.importPreparedTemporaryFile(
+                                at: url,
+                                displayName: chosenName,
+                                sourceType: sourceType,
+                                preferredFolderID: preferredFolderID
+                            )
+                        case .remoteURL(let rawValue):
+                            success = await viewModel.importFromRemoteURLString(
+                                rawValue,
+                                displayName: chosenName,
+                                preferredFolderID: preferredFolderID
+                            )
+                        }
+
+                        if success {
+                            pendingImport = nil
+                            dismiss()
+                        }
+                    }
+                )
             }
         }
         .preferredColorScheme(.dark)
@@ -249,7 +308,8 @@ struct AddExistingMediaToFolderSheet: View {
     }
 
     private let columns = [
-        GridItem(.adaptive(minimum: 124, maximum: 180), spacing: 14)
+        GridItem(.flexible(), spacing: 14, alignment: .top),
+        GridItem(.flexible(), spacing: 14, alignment: .top)
     ]
 
     var body: some View {
@@ -277,6 +337,7 @@ struct AddExistingMediaToFolderSheet: View {
                                 Button {
                                     Task {
                                         await viewModel.move(item, to: folder.id)
+                                        dismiss()
                                     }
                                 } label: {
                                     ZStack(alignment: .topTrailing) {
@@ -322,6 +383,88 @@ struct AddExistingMediaToFolderSheet: View {
             }
         }
         .preferredColorScheme(.dark)
+    }
+}
+
+private struct MediaImportNameSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @FocusState private var isFocused: Bool
+
+    let draft: PendingImportDraft
+    let onSave: (String) async -> Void
+
+    @State private var mediaName: String
+
+    init(draft: PendingImportDraft, onSave: @escaping (String) async -> Void) {
+        self.draft = draft
+        self.onSave = onSave
+        _mediaName = State(initialValue: draft.suggestedName)
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Name") {
+                    TextField("Media name", text: $mediaName)
+                        .focused($isFocused)
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.04, green: 0.05, blue: 0.09),
+                        Color(red: 0.08, green: 0.10, blue: 0.17)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+            )
+            .navigationTitle("Name Your Media")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Add") {
+                        Task {
+                            await onSave(mediaName)
+                        }
+                    }
+                    .disabled(mediaName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+        .task {
+            isFocused = true
+        }
+    }
+}
+
+private struct PendingImportDraft: Identifiable {
+    enum Source {
+        case externalFile(URL, MediaSourceType)
+        case temporaryFile(URL, MediaSourceType)
+        case remoteURL(String)
+    }
+
+    let id = UUID()
+    let source: Source
+    let suggestedName: String
+
+    static func defaultName(from rawURL: String) -> String {
+        guard let url = URL(string: rawURL) else {
+            return "Imported Media"
+        }
+
+        let name = url.deletingPathExtension().lastPathComponent
+        return name.isEmpty ? "Imported Media" : name
     }
 }
 
