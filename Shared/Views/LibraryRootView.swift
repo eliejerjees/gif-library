@@ -30,35 +30,39 @@ struct LibraryRootView: View {
     let experience: LibraryExperience
 
     var body: some View {
-        ZStack(alignment: .top) {
-            LibraryBackgroundView()
+        GeometryReader { proxy in
+            ZStack(alignment: .top) {
+                LibraryBackgroundView()
 
-            if let startupError = viewModel.startupError {
-                SetupRequiredView(message: startupError)
-                    .padding(20)
-                    .padding(.top, 12)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            } else {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 20) {
-                        actionRow
-                        header
-                        searchBar
-                        tabPicker
-                        tabContent
+                if let startupError = viewModel.startupError {
+                    SetupRequiredView(message: startupError)
+                        .padding(20)
+                        .padding(.top, 12)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                } else {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            actionRow
+                            header
+                            searchBar
+                            tabPicker
+                            tabContent
+                        }
+                        .padding(20)
+                        .padding(.top, 12)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(minHeight: proxy.size.height, alignment: .top)
                     }
-                    .padding(20)
-                    .padding(.top, 12)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .scrollIndicators(.hidden)
+                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
                 }
-                .scrollIndicators(.hidden)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            }
 
-            if viewModel.isBusy {
-                BusyOverlayView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                if viewModel.isBusy {
+                    BusyOverlayView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
+            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .preferredColorScheme(.dark)
