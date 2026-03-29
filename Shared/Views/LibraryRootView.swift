@@ -3,14 +3,12 @@ import SwiftUI
 struct LibraryExperience {
     let title: String
     let subtitle: String?
-    let sendButtonTitle: String
     let sendAction: (@Sendable (MediaSendPayload) async throws -> Void)?
 
     static func hostApp() -> LibraryExperience {
         LibraryExperience(
             title: "GIF Library",
             subtitle: "Use the host app for setup, extra imports, and fallback management. Day-to-day browsing and sending stays in Messages.",
-            sendButtonTitle: "Insert in Messages",
             sendAction: nil
         )
     }
@@ -19,7 +17,6 @@ struct LibraryExperience {
         LibraryExperience(
             title: "Library",
             subtitle: "Recent stays fast. Folders keep the rest tidy.",
-            sendButtonTitle: "Insert in Conversation",
             sendAction: sendAction
         )
     }
@@ -85,15 +82,6 @@ struct LibraryRootView: View {
         }
         .sheet(isPresented: $isImportSheetPresented) {
             ImportMediaSheet(viewModel: viewModel, preferredFolderID: nil)
-        }
-        .sheet(item: $viewModel.selectedAssetForComposer) { item in
-            if let payload = viewModel.sendPayload(for: item) {
-                MediaComposerSheet(
-                    viewModel: viewModel,
-                    payload: payload,
-                    experience: experience
-                )
-            }
         }
         .sheet(item: $viewModel.folderEditor) { editor in
             FolderEditorSheet(

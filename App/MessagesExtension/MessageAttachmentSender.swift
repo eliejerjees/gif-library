@@ -18,8 +18,16 @@ final class MessageAttachmentSender {
     ) async throws {
         try await conversation.insertAttachmentAsync(
             payload.fileURL,
-            withAlternateFilename: payload.item.originalFilename
+            withAlternateFilename: payload.item.messageAttachmentFilename
         )
+    }
+}
+
+private extension MediaAsset {
+    var messageAttachmentFilename: String {
+        let fileExtension = URL(fileURLWithPath: relativeFilePath).pathExtension
+        guard !fileExtension.isEmpty else { return displayName }
+        return "\(displayName).\(fileExtension)"
     }
 }
 

@@ -56,7 +56,7 @@ struct MediaComposerSheet: View {
                             if isSending {
                                 ProgressView()
                             } else {
-                                Text(experience.sendButtonTitle)
+                                Text("Insert")
                             }
                         }
                         .disabled(isSending)

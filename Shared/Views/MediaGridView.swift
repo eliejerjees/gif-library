@@ -6,33 +6,47 @@ struct MediaGridView: View {
     let experience: LibraryExperience
     let showFolderNames: Bool
 
-    private var rows: [[MediaAsset]] {
-        stride(from: 0, to: items.count, by: 2).map { startIndex in
-            Array(items[startIndex ..< min(startIndex + 2, items.count)])
-        }
+    @State private var availableWidth: CGFloat = 0
+
+    private let spacing: CGFloat = 14
+
+    private var columns: [GridItem] {
+        [
+            GridItem(.fixed(tileSize), spacing: spacing, alignment: .top),
+            GridItem(.fixed(tileSize), spacing: spacing, alignment: .top)
+        ]
+    }
+
+    private var tileSize: CGFloat {
+        let fallbackWidth = UIScreen.main.bounds.width - 40
+        let width = max(availableWidth, fallbackWidth)
+        return max(floor((width - spacing) / 2), 120)
     }
 
     var body: some View {
-        VStack(spacing: 14) {
-            ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
-                HStack(alignment: .top, spacing: 14) {
-                    ForEach(row) { item in
-                        tileButton(for: item)
-                    }
-
-                    if row.count == 1 {
-                        Color.clear
-                            .frame(maxWidth: .infinity)
-                            .aspectRatio(1, contentMode: .fit)
-                    }
-                }
+        LazyVGrid(columns: columns, alignment: .leading, spacing: spacing) {
+            ForEach(items) { item in
+                tileButton(for: item)
+                    .frame(width: tileSize, height: tileSize)
             }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background {
+            GeometryReader { proxy in
+                Color.clear
+                    .preference(key: MediaGridWidthPreferenceKey.self, value: proxy.size.width)
+            }
+        }
+        .onPreferenceChange(MediaGridWidthPreferenceKey.self) { width in
+            availableWidth = width
         }
     }
 
     private func tileButton(for item: MediaAsset) -> some View {
         Button {
-            viewModel.showComposer(for: item)
+            Task {
+                await viewModel.handlePrimaryTap(on: item, sendAction: experience.sendAction)
+            }
         } label: {
             MediaTileView(
                 item: item,
@@ -41,11 +55,13 @@ struct MediaGridView: View {
             )
         }
         .buttonStyle(.plain)
-        .frame(maxWidth: .infinity)
-        .aspectRatio(1, contentMode: .fit)
         .contextMenu {
-            Button(experience.sendAction == nil ? "Preview" : "Insert", systemImage: "paperplane") {
-                viewModel.showComposer(for: item)
+            if experience.sendAction != nil {
+                Button("Insert", systemImage: "paperplane") {
+                    Task {
+                        await viewModel.handlePrimaryTap(on: item, sendAction: experience.sendAction)
+                    }
+                }
             }
 
             Button("Rename", systemImage: "pencil") {
@@ -70,6 +86,14 @@ struct MediaGridView: View {
                 }
             }
         }
+    }
+}
+
+private struct MediaGridWidthPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
     }
 }
 

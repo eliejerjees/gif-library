@@ -18,7 +18,6 @@ final class LibraryViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var alertState: AlertState?
     @Published var isBusy = false
-    @Published var selectedAssetForComposer: MediaAsset?
     @Published var folderEditor: FolderEditorState?
     @Published var itemEditor: ItemEditorState?
     @Published var itemBeingMoved: MediaAsset?
@@ -117,8 +116,27 @@ final class LibraryViewModel: ObservableObject {
         )
     }
 
-    func showComposer(for item: MediaAsset) {
-        selectedAssetForComposer = item
+    func handlePrimaryTap(
+        on item: MediaAsset,
+        sendAction: (@Sendable (MediaSendPayload) async throws -> Void)?
+    ) async {
+        guard let sendAction else { return }
+        guard let payload = sendPayload(for: item) else {
+            present(LibraryViewModelError.unavailableMediaPayload)
+            return
+        }
+
+        guard let store else { return }
+
+        isBusy = true
+        defer { isBusy = false }
+
+        do {
+            try await sendAction(payload)
+            snapshot = try await store.registerUse(of: item.id, caption: nil)
+        } catch {
+            present(error)
+        }
     }
 
     func createFolder(named name: String) async {
@@ -175,9 +193,6 @@ final class LibraryViewModel: ObservableObject {
         guard let store else { return }
         do {
             snapshot = try await store.deleteItem(id: item.id)
-            if selectedAssetForComposer?.id == item.id {
-                selectedAssetForComposer = nil
-            }
         } catch {
             present(error)
         }
@@ -187,7 +202,6 @@ final class LibraryViewModel: ObservableObject {
         guard let store else { return }
         do {
             snapshot = try await store.registerUse(of: item.id, caption: nil)
-            selectedAssetForComposer = snapshot.items.first(where: { $0.id == item.id })
         } catch {
             present(error)
         }
@@ -357,11 +371,14 @@ struct ItemEditorState: Identifiable {
 
 enum LibraryViewModelError: LocalizedError {
     case invalidRemoteURL
+    case unavailableMediaPayload
 
     var errorDescription: String? {
         switch self {
         case .invalidRemoteURL:
             return "Enter a full http or https URL before importing."
+        case .unavailableMediaPayload:
+            return "That media item is unavailable right now. Try importing it again."
         }
     }
 }
