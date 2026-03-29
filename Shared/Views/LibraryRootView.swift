@@ -30,29 +30,37 @@ struct LibraryRootView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                LibraryBackgroundView()
+            GeometryReader { proxy in
+                ZStack(alignment: .top) {
+                    LibraryBackgroundView()
 
-                if let startupError = viewModel.startupError {
-                    SetupRequiredView(message: startupError)
-                        .padding(20)
-                } else {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 20) {
-                            header
-                            searchBar
-                            tabPicker
-                            tabContent
+                    if let startupError = viewModel.startupError {
+                        SetupRequiredView(message: startupError)
+                            .padding(20)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    } else {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 20) {
+                                header
+                                searchBar
+                                tabPicker
+                                tabContent
+                            }
+                            .padding(20)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        .padding(20)
+                        .scrollIndicators(.hidden)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     }
-                    .scrollIndicators(.hidden)
-                }
 
-                if viewModel.isBusy {
-                    BusyOverlayView()
+                    if viewModel.isBusy {
+                        BusyOverlayView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
                 }
+                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if viewModel.startupError == nil {
@@ -76,6 +84,8 @@ struct LibraryRootView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(LibraryBackgroundView())
         .preferredColorScheme(.dark)
         .task {
             await viewModel.load()
