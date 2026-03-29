@@ -31,6 +31,8 @@ struct LibraryRootView: View {
 
     var body: some View {
         GeometryReader { proxy in
+            let usesBottomSearchBar = isShortPresentation(for: proxy.size.height)
+
             ZStack(alignment: .top) {
                 LibraryBackgroundView()
 
@@ -41,10 +43,13 @@ struct LibraryRootView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 } else {
                     ScrollView {
-                        VStack(alignment: .leading, spacing: 20) {
+                        VStack(alignment: .leading, spacing: 16) {
                             actionRow
-                            header
-                            searchBar
+
+                            if !usesBottomSearchBar {
+                                searchBar
+                            }
+
                             tabPicker
                             tabContent
                         }
@@ -55,6 +60,26 @@ struct LibraryRootView: View {
                     }
                     .scrollIndicators(.hidden)
                     .frame(width: proxy.size.width, height: proxy.size.height, alignment: .top)
+                    .safeAreaInset(edge: .bottom, spacing: 0) {
+                        if usesBottomSearchBar {
+                            searchBar
+                                .padding(.horizontal, 20)
+                                .padding(.top, 10)
+                                .padding(.bottom, 12)
+                                .background(
+                                    LinearGradient(
+                                        colors: [
+                                            Color(red: 0.04, green: 0.05, blue: 0.09).opacity(0),
+                                            Color(red: 0.04, green: 0.05, blue: 0.09).opacity(0.92),
+                                            Color(red: 0.04, green: 0.05, blue: 0.09)
+                                        ],
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                    .ignoresSafeArea()
+                                )
+                        }
+                    }
                 }
 
                 if viewModel.isBusy {
@@ -135,6 +160,10 @@ struct LibraryRootView: View {
         }
     }
 
+    private func isShortPresentation(for height: CGFloat) -> Bool {
+        height < 560
+    }
+
     private var actionRow: some View {
         HStack {
             if viewModel.selectedTab == .folders {
@@ -152,30 +181,6 @@ struct LibraryRootView: View {
                 isImportSheetPresented = true
             }
         }
-    }
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(experience.title)
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-
-            if let subtitle = experience.subtitle {
-                Text(subtitle)
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(Color.white.opacity(0.7))
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            #if DEBUG
-            Text("DEBUG MARKER 01:34")
-                .font(.system(size: 10, weight: .bold, design: .rounded))
-                .foregroundStyle(Color.cyan.opacity(0.9))
-            #endif
-        }
-        .padding(20)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(LibraryCardBackground())
     }
 
     private var tabPicker: some View {

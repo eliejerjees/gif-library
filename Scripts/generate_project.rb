@@ -118,4 +118,9 @@ embed_phase.symbol_dst_subfolder_spec = :plug_ins
 embed_phase.add_file_reference(extension_target.product_reference, true)
 
 project.save
+
+app_scheme = Xcodeproj::XCScheme.new
+app_scheme.configure_with_targets(app_target, nil, launch_target: true)
+app_scheme.save_as(project_path, APP_TARGET_NAME, true)
+
 puts "Generated #{project_path}"
